@@ -10,7 +10,9 @@ export default function ContactPage() {
   return (
     <section>
       <h1>Contact</h1>
-      <p className="page-intro">Best way to reach me is by email or LinkedIn.</p>
+      <p className="page-intro">
+        For leadership opportunities, consulting conversations, or collaboration on GTM systems, reach out here.
+      </p>
 
       <div className="list-stack">
         <article className="list-item">

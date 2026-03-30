@@ -37,11 +37,11 @@ export default function ResumePage() {
       <div className="list-stack">
         <article className="list-item">
           <h2>Current Focus</h2>
-          <p>GTM systems design, AI operationalization, and scalable RevOps leadership.</p>
+          <p>GTM systems design, AI operationalization, and high-accountability RevOps leadership.</p>
         </article>
         <article className="list-item">
           <h2>Hiring Use Case</h2>
-          <p>Use this page in job applications as a one-click path to resume + work samples + contact info.</p>
+          <p>Use this page as a single link for resume, project proof, thought leadership, and direct contact.</p>
         </article>
       </div>
     </section>

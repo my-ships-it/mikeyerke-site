@@ -9,14 +9,28 @@ export const metadata: Metadata = {
 
 export default function BlogIndexPage() {
   const posts = getAllContent("blog");
+  const latest = posts[0];
+  const remaining = posts.slice(1);
 
   return (
     <section>
       <h1>Blog</h1>
-      <p className="page-intro">Thoughts on GTM systems, AI workflows, and operating at scale.</p>
+      <p className="page-intro">
+        Ideas, playbooks, and operating principles for scaling GTM execution with AI and strong systems design.
+      </p>
 
-      <div className="list-stack">
-        {posts.map((post) => (
+      {latest ? (
+        <article className="showcase-card page-showcase">
+          <p className="meta">{latest.date} | Featured Essay</p>
+          <h2>
+            <Link href={`/blog/${latest.slug}`}>{latest.title}</Link>
+          </h2>
+          <p>{latest.summary}</p>
+        </article>
+      ) : null}
+
+      <div className="journal-grid">
+        {remaining.map((post) => (
           <article className="list-item" key={post.slug}>
             <p className="meta">{post.date}</p>
             <h2>

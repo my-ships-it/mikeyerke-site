@@ -9,14 +9,35 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   const projects = getAllContent("projects");
+  const featured = projects.find((project) => project.featured) ?? projects[0];
+  const projectList = featured ? projects.filter((project) => project.slug !== featured.slug) : projects;
 
   return (
     <section>
       <h1>Projects</h1>
-      <p className="page-intro">Selected work across AI tooling, ops automation, and growth systems.</p>
+      <p className="page-intro">
+        Systems-heavy builds across GTM operations, AI workflow design, and execution tooling.
+      </p>
 
-      <div className="card-grid">
-        {projects.map((project) => (
+      {featured ? (
+        <article className="showcase-card page-showcase">
+          <p className="meta">Featured Build</p>
+          <h2>
+            <Link href={`/projects/${featured.slug}`}>{featured.title}</Link>
+          </h2>
+          <p>{featured.summary}</p>
+          <div className="tag-row">
+            {featured.tags.map((tag) => (
+              <span className="tag" key={tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        </article>
+      ) : null}
+
+      <div className="showcase-grid">
+        {projectList.map((project) => (
           <article className="card" key={project.slug}>
             <p className="meta">{project.date}</p>
             <h2>

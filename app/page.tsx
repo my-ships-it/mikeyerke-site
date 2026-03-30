@@ -4,50 +4,82 @@ import { getAllContent } from "@/lib/content";
 export default function HomePage() {
   const posts = getAllContent("blog").slice(0, 3);
   const projects = getAllContent("projects").filter((item) => item.featured).slice(0, 4);
+  const spotlight = projects[0];
+  const restProjects = projects.slice(1);
 
   return (
     <>
       <section className="hero">
-        <p className="eyebrow">GTM Systems | AI Workflows | RevOps Leadership</p>
-        <h1>Mike Yerke</h1>
-        <p>
-          I design and deploy scalable GTM systems that help teams move faster with better data, cleaner
-          handoffs, and measurable revenue impact.
-        </p>
-        <div className="hero-actions">
-          <Link className="btn btn-primary" href="/projects">
-            View Projects
-          </Link>
-          <Link className="btn btn-secondary" href="/resume">
-            View Resume
-          </Link>
-        </div>
-        <div className="metric-row">
-          <article className="metric-card">
-            <p className="meta">Focus</p>
-            <h3>Revenue Systems</h3>
-            <p>Operational design across lifecycle, routing, and pipeline hygiene.</p>
-          </article>
-          <article className="metric-card">
-            <p className="meta">Stack</p>
-            <h3>AI + Automation</h3>
-            <p>Workflow automation that supports teams without introducing hidden complexity.</p>
-          </article>
-          <article className="metric-card">
-            <p className="meta">Outcomes</p>
-            <h3>Execution Velocity</h3>
-            <p>Faster handoffs, better data quality, and cleaner forecasting signals.</p>
-          </article>
+        <div className="hero-layout">
+          <div>
+            <p className="eyebrow">GTM Systems | AI Workflows | RevOps Leadership</p>
+            <h1>I Build Revenue Engines That Teams Actually Use</h1>
+            <p>
+              I am Mike Yerke. I design operating systems for Sales, Marketing, and CS that remove friction,
+              increase signal quality, and convert strategy into measurable execution.
+            </p>
+            <div className="hero-actions">
+              <Link className="btn btn-primary" href="/projects">
+                Explore Case Studies
+              </Link>
+              <Link className="btn btn-secondary" href="/resume">
+                Download Resume
+              </Link>
+            </div>
+            <div className="stat-band">
+              <div className="stat-pill">
+                <p className="meta">Specialty</p>
+                <h3>RevOps Architecture</h3>
+              </div>
+              <div className="stat-pill">
+                <p className="meta">Systems Lens</p>
+                <h3>AI + Automation</h3>
+              </div>
+              <div className="stat-pill">
+                <p className="meta">Delivery Style</p>
+                <h3>Operator + Builder</h3>
+              </div>
+            </div>
+          </div>
+          <aside className="hero-panel">
+            <p className="meta">What You Get Working With Me</p>
+            <h3>Clarity. Speed. Accountability.</h3>
+            <ul className="hero-list">
+              <li>Clear owner maps across the full funnel</li>
+              <li>Automation that survives real world edge cases</li>
+              <li>Actionable forecasting and pipeline diagnostics</li>
+              <li>Documentation teams can onboard from quickly</li>
+            </ul>
+            <Link className="inline-cta" href="/contact">
+              Start a conversation
+            </Link>
+          </aside>
         </div>
       </section>
 
       <section>
         <div className="section-header">
-          <h2>Featured Projects</h2>
+          <h2>Selected Work</h2>
           <Link href="/projects">See all</Link>
         </div>
-        <div className="card-grid">
-          {projects.map((project) => (
+        {spotlight ? (
+          <article className="showcase-card">
+            <p className="meta">Project Spotlight</p>
+            <h3>
+              <Link href={`/projects/${spotlight.slug}`}>{spotlight.title}</Link>
+            </h3>
+            <p>{spotlight.summary}</p>
+            <div className="tag-row">
+              {spotlight.tags.map((tag) => (
+                <span className="tag" key={tag}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </article>
+        ) : null}
+        <div className="showcase-grid">
+          {restProjects.map((project) => (
             <article className="card" key={project.slug}>
               <h3>
                 <Link href={`/projects/${project.slug}`}>{project.title}</Link>
@@ -67,30 +99,30 @@ export default function HomePage() {
 
       <section>
         <div className="section-header">
-          <h2>How I Work</h2>
+          <h2>Execution Model</h2>
         </div>
         <div className="card-grid">
           <article className="card">
-            <h3>1. Map the operating model</h3>
-            <p>Align stage definitions, ownership, and dependencies before touching tooling.</p>
+            <h3>1. Diagnose</h3>
+            <p>Map bottlenecks in process, data integrity, and ownership boundaries.</p>
           </article>
           <article className="card">
-            <h3>2. Build for adoption</h3>
-            <p>Ship systems teams actually use, with clear documentation and low friction workflows.</p>
+            <h3>2. Architect</h3>
+            <p>Design workflows and automation with reliable guardrails and observability.</p>
           </article>
           <article className="card">
-            <h3>3. Measure business lift</h3>
-            <p>Tie every automation to conversion, cycle time, and forecast confidence improvements.</p>
+            <h3>3. Operationalize</h3>
+            <p>Enable teams with clear SOPs and tie outcomes to revenue-facing metrics.</p>
           </article>
         </div>
       </section>
 
       <section>
         <div className="section-header">
-          <h2>Latest Writing</h2>
+          <h2>Writing + POV</h2>
           <Link href="/blog">Read all</Link>
         </div>
-        <div className="list-stack">
+        <div className="journal-grid">
           {posts.map((post) => (
             <article className="list-item" key={post.slug}>
               <p className="meta">{post.date}</p>
@@ -100,6 +132,23 @@ export default function HomePage() {
               <p>{post.summary}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="cta-banner">
+        <p className="eyebrow">Open To Leadership Roles</p>
+        <h2>Looking for someone who can both design strategy and ship systems?</h2>
+        <p>
+          This site highlights how I think and how I execute. If you are hiring for RevOps, GTM Systems, or AI
+          operations leadership, let us talk.
+        </p>
+        <div className="hero-actions">
+          <Link className="btn btn-primary" href="/contact">
+            Contact Mike
+          </Link>
+          <Link className="btn btn-secondary" href="/resume">
+            Review Resume
+          </Link>
         </div>
       </section>
     </>

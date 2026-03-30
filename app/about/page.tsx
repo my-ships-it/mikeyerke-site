@@ -10,16 +10,15 @@ export default function AboutPage() {
     <section>
       <h1>About</h1>
       <p className="page-intro">
-        I work at the intersection of GTM systems, AI enablement, and revenue operations. My focus is building
-        reliable systems that reduce friction between Sales, Marketing, and Customer Success.
+        I operate at the intersection of GTM systems, AI enablement, and revenue operations. My work is about
+        turning messy cross-functional workflows into clear, scalable operating systems.
       </p>
 
       <div className="list-stack">
         <article className="list-item">
           <h2>What I Optimize For</h2>
           <p>
-            Better signal in pipeline data, cleaner process handoffs, and automation that scales without creating
-            hidden operational debt.
+            Better decision signal, faster execution cycles, and systems that teams trust enough to adopt.
           </p>
         </article>
 
@@ -31,8 +30,8 @@ export default function AboutPage() {
         <article className="list-item">
           <h2>How I Work</h2>
           <p>
-            I prioritize systems that teams can actually adopt. The goal is measurable business outcomes, not just
-            shipping shiny tools.
+            I pair strategic framing with operator-level execution. The goal is measurable business lift, not
+            just shipping tools.
           </p>
         </article>
       </div>
