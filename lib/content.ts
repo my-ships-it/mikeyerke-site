@@ -71,24 +71,24 @@ function toImpactMetrics(value: unknown): ImpactMetric[] {
     return [];
   }
 
-  return value
-    .map((item) => {
-      if (typeof item !== "object" || item === null) {
-        return null;
-      }
+  return value.reduce<ImpactMetric[]>((accumulator, item) => {
+    if (typeof item !== "object" || item === null) {
+      return accumulator;
+    }
 
-      const metric = item as { label?: unknown; value?: unknown; detail?: unknown };
-      if (!metric.label || !metric.value) {
-        return null;
-      }
+    const metric = item as { label?: unknown; value?: unknown; detail?: unknown };
+    if (!metric.label || !metric.value) {
+      return accumulator;
+    }
 
-      return {
-        label: String(metric.label),
-        value: String(metric.value),
-        detail: metric.detail ? String(metric.detail) : undefined
-      };
-    })
-    .filter((item): item is ImpactMetric => Boolean(item));
+    accumulator.push({
+      label: String(metric.label),
+      value: String(metric.value),
+      detail: metric.detail ? String(metric.detail) : undefined
+    });
+
+    return accumulator;
+  }, []);
 }
 
 export function getAllContent(type: ContentType): ContentItem[] {
