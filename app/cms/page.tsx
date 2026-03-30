@@ -15,22 +15,29 @@ export default function CmsPage() {
 
       <div className="list-stack">
         <article className="list-item">
-          <h2>1. OAuth Service</h2>
+          <h2>1. GitHub OAuth App</h2>
           <p>
-            Configure a GitHub OAuth proxy service and set the URL in <code>public/admin/config.yml</code> for{" "}
-            <code>base_url</code>.
+            Create a GitHub OAuth app with callback URL <code>https://www.mikeyerke.com/api/cms/callback</code>.
           </p>
         </article>
 
         <article className="list-item">
-          <h2>2. Open Admin</h2>
+          <h2>2. Set Vercel Variables</h2>
+          <p>
+            Add <code>CMS_BASE_URL</code>, <code>CMS_GITHUB_CLIENT_ID</code>, and{" "}
+            <code>CMS_GITHUB_CLIENT_SECRET</code> in Vercel project environment variables.
+          </p>
+        </article>
+
+        <article className="list-item">
+          <h2>3. Open Admin</h2>
           <p>
             Visit <code>/admin</code>, authenticate with GitHub, and edit blog/projects visually.
           </p>
         </article>
 
         <article className="list-item">
-          <h2>3. Publish Changes</h2>
+          <h2>4. Publish Changes</h2>
           <p>
             Saved content commits to your repository and redeploys automatically on Vercel.
           </p>

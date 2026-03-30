@@ -57,6 +57,13 @@ function misconfiguredResponse() {
 }
 
 export async function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+  if (pathname.startsWith("/api/cms/")) {
+    const openResponse = NextResponse.next();
+    applySecurityHeaders(openResponse);
+    return openResponse;
+  }
+
   const expectedUsername = process.env.SITE_USERNAME;
   const expectedPassword = process.env.SITE_PASSWORD;
 

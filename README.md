@@ -81,11 +81,23 @@ After deploy, all pages are behind a username/password prompt.
 ## CMS Editing (Optional)
 
 This repo includes a Decap CMS panel at `/admin` for visual content editing.
+The OAuth backend is self-hosted in this app:
 
-1. Configure a GitHub OAuth proxy service.
-2. Set `backend.base_url` in `public/admin/config.yml`.
-3. Visit `/admin` and log in with GitHub.
-4. Edit blog/projects visually and publish commits to `main`.
+- `/api/cms/auth`
+- `/api/cms/callback`
+
+Setup:
+
+1. Create a GitHub OAuth App:
+   - Homepage URL: `https://www.mikeyerke.com`
+   - Authorization callback URL: `https://www.mikeyerke.com/api/cms/callback`
+2. In Vercel `Settings -> Environment Variables`, add:
+   - `CMS_BASE_URL=https://www.mikeyerke.com`
+   - `CMS_GITHUB_CLIENT_ID=<from GitHub OAuth app>`
+   - `CMS_GITHUB_CLIENT_SECRET=<from GitHub OAuth app>`
+3. Redeploy.
+4. Visit `/admin` and log in with GitHub.
+5. Edit blog/projects visually and publish commits to `main`.
 
 ## Security Notes
 

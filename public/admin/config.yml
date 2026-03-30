@@ -2,8 +2,9 @@ backend:
   name: github
   repo: my-ships-it/mikeyerke-site
   branch: main
-  base_url: https://YOUR-OAUTH-SERVICE-URL
-  auth_endpoint: auth
+  base_url: https://www.mikeyerke.com
+  auth_endpoint: api/cms/auth
+  site_domain: www.mikeyerke.com
 
 media_folder: public/uploads
 public_folder: /uploads
