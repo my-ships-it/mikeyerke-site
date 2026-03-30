@@ -1,7 +1,7 @@
-import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 
 const STATE_COOKIE = "cms_oauth_state";
+export const runtime = "nodejs";
 
 function getBaseUrl(request: NextRequest): string {
   if (process.env.CMS_BASE_URL) {
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const state = randomUUID();
+  const state = crypto.randomUUID();
   const baseUrl = getBaseUrl(request);
   const redirectUri = `${baseUrl}/api/cms/callback`;
 

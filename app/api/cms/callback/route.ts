@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const STATE_COOKIE = "cms_oauth_state";
+export const runtime = "nodejs";
 
 function getBaseUrl(request: NextRequest): string {
   if (process.env.CMS_BASE_URL) {
