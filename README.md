@@ -48,6 +48,29 @@ Replace `public/mike-yerke-resume.pdf` with your actual PDF.
 4. In Vercel project settings, add `mikeyerke.com` and `www.mikeyerke.com` as domains.
 5. In Cloudflare DNS, add the records Vercel provides.
 
+## Password Protect The Entire Site
+
+This repo includes middleware-level HTTP Basic Auth. If credentials are not set in production, the site returns `503` (safe default).
+
+1. In Vercel, open your project.
+2. Go to `Settings -> Environment Variables`.
+3. Add:
+   - `SITE_USERNAME`
+   - `SITE_PASSWORD`
+4. Set both for `Production` (and optionally `Preview`).
+5. Redeploy.
+
+After deploy, all pages are behind a username/password prompt.
+
+## Security Notes
+
+- This site is static and does not store user accounts, databases, or payment info.
+- Security headers are applied by middleware.
+- `x-powered-by` header is disabled.
+- Do not commit secrets or API keys to the repo.
+- Keep dependencies updated (`npm outdated`, then patch regularly).
+- Use strong unique passwords for Vercel, GitHub, and Cloudflare and enable 2FA.
+
 ## Suggested next edits
 
 - Replace placeholder project/blog content with real case studies
