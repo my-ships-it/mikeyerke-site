@@ -1,0 +1,64 @@
+backend:
+  name: github
+  repo: my-ships-it/mikeyerke-site
+  branch: main
+  base_url: https://YOUR-OAUTH-SERVICE-URL
+  auth_endpoint: auth
+
+media_folder: public/uploads
+public_folder: /uploads
+
+site_url: https://mikeyerke.com
+logo_url: /favicon.ico
+
+collections:
+  - name: blog
+    label: Blog
+    folder: content/blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { name: summary, label: Summary, widget: text }
+      - { name: tags, label: Tags, widget: list }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: projects
+    label: Projects
+    folder: content/projects
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { name: summary, label: Summary, widget: text }
+      - { name: tags, label: Tags, widget: list }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: role, label: Role, widget: string, required: false }
+      - { name: timeline, label: Timeline, widget: string, required: false }
+      - { name: team, label: Team, widget: string, required: false }
+      - name: before
+        label: Before (Problems)
+        widget: list
+        required: false
+      - name: after
+        label: After (System State)
+        widget: list
+        required: false
+      - name: impact
+        label: Impact Metrics
+        widget: list
+        required: false
+        fields:
+          - { name: label, label: Label, widget: string }
+          - { name: value, label: Value, widget: string }
+          - { name: detail, label: Detail, widget: string, required: false }
+      - { name: repo, label: Repo URL, widget: string, required: false }
+      - { name: demo, label: Demo URL, widget: string, required: false }
+      - { name: body, label: Body, widget: markdown }

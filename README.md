@@ -36,6 +36,22 @@ repo: "https://github.com/..." # optional
 demo: "https://..." # optional
 ```
 
+Project files also support optional case-study fields:
+
+```yaml
+role: "Systems Architect + Builder"
+timeline: "4 weeks"
+team: "RevOps + Engineering"
+before:
+  - "Previous state issue"
+after:
+  - "Improved state"
+impact:
+  - label: "Intake Speed"
+    value: "2.4x faster"
+    detail: "Reduced report-to-ticket time"
+```
+
 ## Resume file
 
 Replace `public/mike-yerke-resume.pdf` with your actual PDF.
@@ -61,6 +77,15 @@ This repo includes middleware-level HTTP Basic Auth. If credentials are not set 
 5. Redeploy.
 
 After deploy, all pages are behind a username/password prompt.
+
+## CMS Editing (Optional)
+
+This repo includes a Decap CMS panel at `/admin` for visual content editing.
+
+1. Configure a GitHub OAuth proxy service.
+2. Set `backend.base_url` in `public/admin/config.yml`.
+3. Visit `/admin` and log in with GitHub.
+4. Edit blog/projects visually and publish commits to `main`.
 
 ## Security Notes
 

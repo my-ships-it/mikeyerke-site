@@ -5,6 +5,12 @@ import { marked } from "marked";
 
 export type ContentType = "blog" | "projects";
 
+export type ImpactMetric = {
+  label: string;
+  value: string;
+  detail?: string;
+};
+
 export type ContentItem = {
   slug: string;
   title: string;
@@ -14,6 +20,12 @@ export type ContentItem = {
   featured: boolean;
   repo?: string;
   demo?: string;
+  role?: string;
+  timeline?: string;
+  team?: string;
+  before: string[];
+  after: string[];
+  impact: ImpactMetric[];
   content: string;
 };
 
@@ -36,8 +48,47 @@ function readMarkdownFile(filePath: string): ContentItem {
     featured: Boolean(data.featured ?? false),
     repo: data.repo ? String(data.repo) : undefined,
     demo: data.demo ? String(data.demo) : undefined,
+    role: data.role ? String(data.role) : undefined,
+    timeline: data.timeline ? String(data.timeline) : undefined,
+    team: data.team ? String(data.team) : undefined,
+    before: toStringArray(data.before),
+    after: toStringArray(data.after),
+    impact: toImpactMetrics(data.impact),
     content
   };
+}
+
+function toStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value.map((item) => String(item)).filter((item) => item.length > 0);
+}
+
+function toImpactMetrics(value: unknown): ImpactMetric[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .map((item) => {
+      if (typeof item !== "object" || item === null) {
+        return null;
+      }
+
+      const metric = item as { label?: unknown; value?: unknown; detail?: unknown };
+      if (!metric.label || !metric.value) {
+        return null;
+      }
+
+      return {
+        label: String(metric.label),
+        value: String(metric.value),
+        detail: metric.detail ? String(metric.detail) : undefined
+      };
+    })
+    .filter((item): item is ImpactMetric => Boolean(item));
 }
 
 export function getAllContent(type: ContentType): ContentItem[] {

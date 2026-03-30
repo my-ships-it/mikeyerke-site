@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllContent } from "@/lib/content";
+import { ProjectExplorer } from "@/components/ProjectExplorer";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -36,24 +37,7 @@ export default function ProjectsPage() {
         </article>
       ) : null}
 
-      <div className="showcase-grid">
-        {projectList.map((project) => (
-          <article className="card" key={project.slug}>
-            <p className="meta">{project.date}</p>
-            <h2>
-              <Link href={`/projects/${project.slug}`}>{project.title}</Link>
-            </h2>
-            <p>{project.summary}</p>
-            <div className="tag-row">
-              {project.tags.map((tag) => (
-                <span className="tag" key={tag}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
+      <ProjectExplorer projects={projectList} />
     </section>
   );
 }

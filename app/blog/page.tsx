@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllContent } from "@/lib/content";
+import { BlogSearch } from "@/components/BlogSearch";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
 export default function BlogIndexPage() {
   const posts = getAllContent("blog");
   const latest = posts[0];
-  const remaining = posts.slice(1);
 
   return (
     <section>
@@ -29,17 +29,7 @@ export default function BlogIndexPage() {
         </article>
       ) : null}
 
-      <div className="journal-grid">
-        {remaining.map((post) => (
-          <article className="list-item" key={post.slug}>
-            <p className="meta">{post.date}</p>
-            <h2>
-              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-            </h2>
-            <p>{post.summary}</p>
-          </article>
-        ))}
-      </div>
+      <BlogSearch posts={posts.slice(1)} />
     </section>
   );
 }

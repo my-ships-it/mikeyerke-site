@@ -34,25 +34,92 @@ export default async function ProjectPage({ params }: Props) {
   }
 
   return (
-    <article>
-      <p className="meta">{project.date}</p>
-      <h1>{project.title}</h1>
-      <p className="page-intro">{project.summary}</p>
+    <article className="case-study">
+      <header className="case-hero">
+        <p className="meta">{project.date}</p>
+        <h1>{project.title}</h1>
+        <p className="page-intro">{project.summary}</p>
 
-      <div className="link-row">
-        {project.repo ? (
-          <Link className="btn btn-secondary" href={project.repo} target="_blank" rel="noreferrer">
-            GitHub Repo
-          </Link>
-        ) : null}
-        {project.demo ? (
-          <Link className="btn btn-primary" href={project.demo} target="_blank" rel="noreferrer">
-            Live Demo
-          </Link>
-        ) : null}
-      </div>
+        <div className="case-meta-grid">
+          {project.role ? (
+            <div className="case-meta-card">
+              <p className="meta">Role</p>
+              <h3>{project.role}</h3>
+            </div>
+          ) : null}
+          {project.timeline ? (
+            <div className="case-meta-card">
+              <p className="meta">Timeline</p>
+              <h3>{project.timeline}</h3>
+            </div>
+          ) : null}
+          {project.team ? (
+            <div className="case-meta-card">
+              <p className="meta">Team</p>
+              <h3>{project.team}</h3>
+            </div>
+          ) : null}
+        </div>
 
-      <div className="article-body" dangerouslySetInnerHTML={{ __html: markdownToHtml(project.content) }} />
+        <div className="link-row">
+          {project.repo ? (
+            <Link className="btn btn-secondary" href={project.repo} target="_blank" rel="noreferrer">
+              GitHub Repo
+            </Link>
+          ) : null}
+          {project.demo ? (
+            <Link className="btn btn-primary" href={project.demo} target="_blank" rel="noreferrer">
+              Live Demo
+            </Link>
+          ) : null}
+        </div>
+      </header>
+
+      {project.impact.length > 0 ? (
+        <section className="impact-grid">
+          {project.impact.map((metric) => (
+            <article className="impact-card" key={`${metric.label}-${metric.value}`}>
+              <p className="meta">{metric.label}</p>
+              <h2>{metric.value}</h2>
+              {metric.detail ? <p>{metric.detail}</p> : null}
+            </article>
+          ))}
+        </section>
+      ) : null}
+
+      {(project.before.length > 0 || project.after.length > 0) ? (
+        <section className="architecture-wrap">
+          <h2>Architecture Evolution</h2>
+          <div className="architecture-grid">
+            <article className="architecture-card">
+              <p className="meta">Before</p>
+              {project.before.length > 0 ? (
+                <ul>
+                  {project.before.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="meta">No baseline details captured.</p>
+              )}
+            </article>
+            <article className="architecture-card architecture-after">
+              <p className="meta">After</p>
+              {project.after.length > 0 ? (
+                <ul>
+                  {project.after.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="meta">No target state details captured.</p>
+              )}
+            </article>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="article-body" dangerouslySetInnerHTML={{ __html: markdownToHtml(project.content) }} />
     </article>
   );
 }
