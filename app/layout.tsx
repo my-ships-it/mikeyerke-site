@@ -1,7 +1,18 @@
 import type { Metadata } from "next";
+import { Space_Grotesk, Source_Sans_3 } from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
+
+const displayFont = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display"
+});
+
+const bodyFont = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-body"
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mikeyerke.com"),
@@ -27,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         <Nav />
         <main className="container page-wrap">{children}</main>
         <Footer />

@@ -16,7 +16,9 @@ export default function ResumePage() {
     <section>
       <h1>Resume</h1>
       <p className="page-intro">
-        Add your latest PDF to <code>/public/mike-yerke-resume.pdf</code>.
+        {hasResumePdf
+          ? "Latest resume is available as a downloadable PDF."
+          : "Add your latest PDF to /public/mike-yerke-resume.pdf."}
       </p>
 
       <div className="link-row">

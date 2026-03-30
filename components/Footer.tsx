@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <div className="container footer-shell">
-        <p>(c) {new Date().getFullYear()} Mike Yerke. Built with Next.js and hosted on Vercel.</p>
+        <p>{new Date().getFullYear()} Mike Yerke | GTM systems, AI workflows, and RevOps execution.</p>
       </div>
     </footer>
   );
