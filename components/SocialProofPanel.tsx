@@ -20,7 +20,7 @@ export function SocialProofPanel() {
             <article className="social-proof-card" key={`${reference.role}-${reference.companyType}`}>
               <p className="meta">{reference.role}</p>
               <h3>{reference.companyType}</h3>
-              <p>"{reference.quote}"</p>
+              <p>&ldquo;{reference.quote}&rdquo;</p>
             </article>
           ))}
         </div>
