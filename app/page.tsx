@@ -5,6 +5,10 @@ import { Reveal } from "@/components/Reveal";
 import { SystemsMap } from "@/components/SystemsMap";
 import { ProjectExplorer } from "@/components/ProjectExplorer";
 import { ControlTower } from "@/components/ControlTower";
+import { GtmSimulator } from "@/components/GtmSimulator";
+import { VideoWalkthrough } from "@/components/VideoWalkthrough";
+import { VerifiedOutcomesBoard } from "@/components/VerifiedOutcomesBoard";
+import { SocialProofPanel } from "@/components/SocialProofPanel";
 
 export default function HomePage() {
   const posts = getAllContent("blog").slice(0, 3);
@@ -135,6 +139,14 @@ export default function HomePage() {
       </Reveal>
 
       <Reveal>
+        <GtmSimulator />
+      </Reveal>
+
+      <Reveal>
+        <VerifiedOutcomesBoard />
+      </Reveal>
+
+      <Reveal>
         <section>
           <div className="section-header">
             <h2>Writing + POV</h2>
@@ -155,6 +167,14 @@ export default function HomePage() {
       </Reveal>
 
       <Reveal>
+        <VideoWalkthrough />
+      </Reveal>
+
+      <Reveal>
+        <SocialProofPanel />
+      </Reveal>
+
+      <Reveal>
         <section className="cta-banner">
           <p className="eyebrow">Open To Leadership Roles</p>
           <h2>Looking for someone who can both design strategy and ship systems?</h2>
@@ -168,6 +188,9 @@ export default function HomePage() {
             </Link>
             <Link className="btn btn-secondary" href="/resume">
               Review Resume
+            </Link>
+            <Link className="btn btn-secondary" href="/artifacts">
+              Flagship Artifacts
             </Link>
           </div>
         </section>

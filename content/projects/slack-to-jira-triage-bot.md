@@ -17,6 +17,26 @@ demo: "https://mikeyerke.com"
 role: "Systems Architect + Builder"
 timeline: "4 weeks"
 team: "RevOps + Engineering"
+stakeholders:
+  - "RevOps lead defining intake policy and triage standards"
+  - "Engineering managers owning downstream queue quality"
+  - "Individual contributors submitting issues through Slack"
+tradeoffs:
+  - "Balanced strict intake requirements against submission speed"
+  - "Chose deterministic routing over flexible but ambiguous tagging"
+  - "Limited first release scope to highest-volume issue types"
+governance:
+  - "Defined escalation rules for unresolved routing exceptions"
+  - "Documented ownership boundaries between ops and engineering"
+  - "Established ticket-quality audit checks in weekly review"
+rollout:
+  - "Piloted with one engineering pod before org-wide rollout"
+  - "Added onboarding guidance directly in Slack submission flow"
+  - "Iterated routing logic based on first two weeks of usage data"
+adoption:
+  - "Tracked usage and template completion by reporting team"
+  - "Published before-and-after intake examples for contributors"
+  - "Added feedback loop for triage edge cases and rule updates"
 before:
   - "Issue reports arrived in unstructured Slack threads with missing context."
   - "Triage quality depended on whoever happened to see the message first."

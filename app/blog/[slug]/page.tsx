@@ -48,8 +48,23 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.summary,
+    datePublished: post.date,
+    author: {
+      "@type": "Person",
+      name: "Mike Yerke"
+    },
+    url: `https://www.mikeyerke.com/blog/${post.slug}`,
+    keywords: post.tags
+  };
+
   return (
     <article>
+      <script dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} type="application/ld+json" />
       <p className="meta">
         {post.date} | {post.readingMinutes} min read
       </p>

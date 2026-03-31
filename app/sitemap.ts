@@ -1,10 +1,15 @@
 import type { MetadataRoute } from "next";
 import { getAllContent } from "@/lib/content";
+import { hireTracks } from "@/lib/hireTracks";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.mikeyerke.com";
-  const staticRoutes = ["", "/about", "/projects", "/blog", "/resume", "/contact", "/hire"].map((route) => ({
+  const staticRoutes = ["", "/about", "/projects", "/blog", "/resume", "/contact", "/hire", "/artifacts", "/trust"].map((route) => ({
     url: `${base}${route}`,
+    lastModified: new Date()
+  }));
+  const hireTrackRoutes = hireTracks.map((track) => ({
+    url: `${base}/hire/${track.slug}`,
     lastModified: new Date()
   }));
 
@@ -18,5 +23,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(project.date)
   }));
 
-  return [...staticRoutes, ...posts, ...projects];
+  return [...staticRoutes, ...hireTrackRoutes, ...posts, ...projects];
 }

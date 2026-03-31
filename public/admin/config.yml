@@ -9,7 +9,7 @@ backend:
 media_folder: public/uploads
 public_folder: /uploads
 
-site_url: https://mikeyerke.com
+site_url: https://www.mikeyerke.com
 logo_url: /favicon.ico
 
 collections:
@@ -41,9 +41,38 @@ collections:
       - { name: summary, label: Summary, widget: text }
       - { name: tags, label: Tags, widget: list }
       - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: coverImage, label: Cover Image Path, widget: string, required: false }
+      - name: visuals
+        label: Visual Gallery
+        widget: list
+        required: false
+        fields:
+          - { name: src, label: Image Path, widget: string }
+          - { name: alt, label: Alt Text, widget: string }
+          - { name: caption, label: Caption, widget: string, required: false }
       - { name: role, label: Role, widget: string, required: false }
       - { name: timeline, label: Timeline, widget: string, required: false }
       - { name: team, label: Team, widget: string, required: false }
+      - name: stakeholders
+        label: Stakeholder Map
+        widget: list
+        required: false
+      - name: tradeoffs
+        label: Decision Tradeoffs
+        widget: list
+        required: false
+      - name: governance
+        label: Governance Model
+        widget: list
+        required: false
+      - name: rollout
+        label: Rollout Plan
+        widget: list
+        required: false
+      - name: adoption
+        label: Adoption Strategy
+        widget: list
+        required: false
       - name: before
         label: Before (Problems)
         widget: list

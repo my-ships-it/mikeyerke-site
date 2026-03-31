@@ -42,6 +42,21 @@ export default function ContactPage() {
         </article>
       </div>
 
+      <section className="list-item">
+        <h2>What Happens Next</h2>
+        <div className="readiness-list">
+          <p>
+            <strong>Within 24 hours:</strong> I reply with fit signal and proposed next step.
+          </p>
+          <p>
+            <strong>Before first call:</strong> I share relevant case-study links and artifact context.
+          </p>
+          <p>
+            <strong>After first call:</strong> If aligned, I send a role-specific operating hypothesis.
+          </p>
+        </div>
+      </section>
+
       <div className="list-stack">
         <article className="list-item">
           <h2>Email</h2>

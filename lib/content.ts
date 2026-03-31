@@ -31,6 +31,11 @@ export type ContentItem = {
   role?: string;
   timeline?: string;
   team?: string;
+  stakeholders: string[];
+  tradeoffs: string[];
+  governance: string[];
+  rollout: string[];
+  adoption: string[];
   before: string[];
   after: string[];
   impact: ImpactMetric[];
@@ -62,6 +67,11 @@ function readMarkdownFile(filePath: string): ContentItem {
     role: data.role ? String(data.role) : undefined,
     timeline: data.timeline ? String(data.timeline) : undefined,
     team: data.team ? String(data.team) : undefined,
+    stakeholders: toStringArray(data.stakeholders),
+    tradeoffs: toStringArray(data.tradeoffs),
+    governance: toStringArray(data.governance),
+    rollout: toStringArray(data.rollout),
+    adoption: toStringArray(data.adoption),
     before: toStringArray(data.before),
     after: toStringArray(data.after),
     impact: toImpactMetrics(data.impact),

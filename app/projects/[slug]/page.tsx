@@ -50,8 +50,32 @@ export default async function ProjectPage({ params }: Props) {
     notFound();
   }
 
+  const leadershipSections = [
+    { title: "Stakeholder Map", items: project.stakeholders },
+    { title: "Decision Tradeoffs", items: project.tradeoffs },
+    { title: "Governance Model", items: project.governance },
+    { title: "Rollout Plan", items: project.rollout },
+    { title: "Adoption Strategy", items: project.adoption }
+  ];
+  const hasLeadershipLayer = leadershipSections.some((section) => section.items.length > 0);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.summary,
+    datePublished: project.date,
+    author: {
+      "@type": "Person",
+      name: "Mike Yerke"
+    },
+    url: `https://www.mikeyerke.com/projects/${project.slug}`,
+    keywords: project.tags
+  };
+
   return (
     <article className="case-study">
+      <script dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} type="application/ld+json" />
+
       <header className="case-hero">
         <p className="meta">{project.date}</p>
         <h1>{project.title}</h1>
@@ -120,6 +144,26 @@ export default async function ProjectPage({ params }: Props) {
               {metric.detail ? <p>{metric.detail}</p> : null}
             </article>
           ))}
+        </section>
+      ) : null}
+
+      {hasLeadershipLayer ? (
+        <section className="leadership-layer">
+          <h2>Leadership Layer</h2>
+          <div className="leadership-grid">
+            {leadershipSections
+              .filter((section) => section.items.length > 0)
+              .map((section) => (
+                <article className="leadership-card" key={section.title}>
+                  <p className="meta">{section.title}</p>
+                  <ul>
+                    {section.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+          </div>
         </section>
       ) : null}
 

@@ -5,10 +5,14 @@ Personal website for Mike Yerke, built with Next.js and ready for Vercel deploym
 ## What is included
 
 - Homepage with positioning, featured projects, and latest writing
+- GTM system simulator and recruiter-focused walkthrough sections
 - Blog index and blog post pages (Markdown-backed)
 - Projects index and project detail pages (Markdown-backed)
 - Project visuals (cover images + gallery support from markdown frontmatter)
+- Project leadership layer (stakeholders, tradeoffs, governance, rollout, adoption)
 - About, Resume, and Contact pages
+- Executive hiring pages (`/hire` + role-specific tracks)
+- Artifacts hub (`/artifacts`) and trust page (`/trust`)
 - Contact funnel with Calendly embed + API-backed form endpoint
 - Open Graph image routes (site-wide + per blog post + per project)
 - Vercel Analytics + Speed Insights wiring
@@ -46,6 +50,16 @@ Project files also support optional case-study fields:
 role: "Systems Architect + Builder"
 timeline: "4 weeks"
 team: "RevOps + Engineering"
+stakeholders:
+  - "Primary stakeholder group"
+tradeoffs:
+  - "Design decision tradeoff"
+governance:
+  - "Governance rule"
+rollout:
+  - "Rollout step"
+adoption:
+  - "Adoption motion"
 before:
   - "Previous state issue"
 after:
@@ -84,6 +98,7 @@ The `/contact` page includes:
 Environment variables:
 
 - `NEXT_PUBLIC_CALENDLY_URL` (example: `https://calendly.com/your-handle/30min`)
+- `NEXT_PUBLIC_WALKTHROUGH_VIDEO_URL` (optional, YouTube/Vimeo link for walkthrough embed)
 - `CONTACT_ALLOWED_ORIGINS` (comma-separated, optional)
 - Delivery target (at least one):
   - `CONTACT_WEBHOOK_URL`
@@ -141,6 +156,13 @@ Setup:
 - Next.js image optimization is enabled with AVIF/WebP output.
 - Vercel Analytics and Speed Insights are wired in `app/layout.tsx`.
 - Static media assets under `public/projects/*` are cache-friendly in protected mode.
+
+## Director-Level Content Workflow
+
+1. Add only verified metrics to project frontmatter `impact` blocks.
+2. Update `/hire` and `/hire/<track>` pages with approved role-specific outcomes.
+3. Add approved reference quotes in `lib/references.ts`.
+4. Keep artifacts in `public/artifacts/*` aligned to your latest operating practices.
 
 ## Suggested next edits
 

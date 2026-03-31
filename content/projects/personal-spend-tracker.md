@@ -16,6 +16,25 @@ repo: "https://github.com/my-ships-it"
 role: "Product Builder"
 timeline: "2 weeks"
 team: "Solo"
+stakeholders:
+  - "Primary end user requiring fast monthly budget clarity"
+  - "Future collaborators reviewing product architecture decisions"
+tradeoffs:
+  - "Chose simple category model over complex multi-dimensional tagging"
+  - "Prioritized fast trend visibility over deeper historical modeling"
+  - "Used lightweight architecture to speed iteration and feedback loops"
+governance:
+  - "Defined naming conventions for categories and budget thresholds"
+  - "Documented update path for adding new transaction sources"
+  - "Set routine checks for data normalization consistency"
+rollout:
+  - "Released baseline dashboard before adding alert logic"
+  - "Validated category mappings against manual monthly review"
+  - "Iterated budget alerts based on actual usage patterns"
+adoption:
+  - "Integrated dashboard into regular monthly decision cadence"
+  - "Captured friction points and translated them into product backlog"
+  - "Used tool as sandbox for experimentation and feature velocity"
 before:
   - "Monthly spend visibility lived across bank portals and CSV exports."
   - "Category budgeting required manual spreadsheet updates."

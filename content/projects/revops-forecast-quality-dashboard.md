@@ -16,6 +16,26 @@ repo: "https://github.com/my-ships-it"
 role: "RevOps Lead"
 timeline: "6 weeks"
 team: "Revenue Leadership + RevOps"
+stakeholders:
+  - "Revenue leadership requiring consistent forecast narrative"
+  - "Frontline managers accountable for pipeline inspection quality"
+  - "RevOps analysts maintaining confidence model and reporting"
+tradeoffs:
+  - "Balanced model sophistication against manager usability"
+  - "Prioritized high-signal risk factors over exhaustive data fields"
+  - "Scoped initial dashboard to forecast-critical slices first"
+governance:
+  - "Defined confidence-band definitions and ownership of updates"
+  - "Aligned weekly inspection cadence with leadership meeting rhythm"
+  - "Set data-quality accountability for stage and activity hygiene"
+rollout:
+  - "Introduced dashboard in manager-only pilot before leadership launch"
+  - "Added inspection guide for interpreting confidence indicators"
+  - "Refined exception-handling workflow after first monthly cycle"
+adoption:
+  - "Tracked usage in weekly call prep and forecast reviews"
+  - "Collected manager feedback on signal clarity and actionability"
+  - "Embedded dashboard links in recurring review agendas"
 before:
   - "Forecast reviews were anecdotal and varied by manager."
   - "Deal risk indicators were scattered across multiple dashboards."
