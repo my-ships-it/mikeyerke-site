@@ -125,7 +125,7 @@ export default function HirePage() {
               <strong>Before first call:</strong> Provide relevant case-study path and artifact shortlist.
             </p>
             <p>
-              <strong>After first call:</strong> Share role-specific 90-day point of view if there's alignment.
+              <strong>After first call:</strong> Share role-specific 90-day point of view if there is alignment.
             </p>
           </div>
         </article>
