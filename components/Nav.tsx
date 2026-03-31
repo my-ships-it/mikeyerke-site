@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/", label: "Home" },
@@ -6,10 +9,13 @@ const links = [
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/resume", label: "Resume" },
-  { href: "/contact", label: "Contact" }
+  { href: "/contact", label: "Contact" },
+  { href: "/hire", label: "Hire" }
 ];
 
 export function Nav() {
+  const pathname = usePathname();
+
   return (
     <header className="site-header">
       <div className="container nav-shell">
@@ -20,7 +26,9 @@ export function Nav() {
           <ul className="nav-links">
             {links.map((link) => (
               <li key={link.href}>
-                <Link href={link.href}>{link.label}</Link>
+                <Link className={pathname === link.href ? "is-active" : ""} href={link.href}>
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>

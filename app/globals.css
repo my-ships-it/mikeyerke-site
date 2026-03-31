@@ -43,6 +43,23 @@ body::before {
   z-index: -1;
 }
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 999;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
 a {
   color: inherit;
 }
@@ -120,6 +137,11 @@ h3 {
 .nav-links a:hover {
   color: var(--brand-strong);
   background: rgba(37, 99, 235, 0.1);
+}
+
+.nav-links a.is-active {
+  color: #ffffff;
+  background: linear-gradient(120deg, #1d4ed8, #0ea5e9);
 }
 
 .page-wrap {
