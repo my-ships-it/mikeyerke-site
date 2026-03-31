@@ -9,6 +9,7 @@ type SearchPost = {
   summary: string;
   date: string;
   tags: string[];
+  readingMinutes: number;
 };
 
 type BlogSearchProps = {
@@ -17,18 +18,28 @@ type BlogSearchProps = {
 
 export function BlogSearch({ posts }: BlogSearchProps) {
   const [query, setQuery] = useState("");
+  const [activeTag, setActiveTag] = useState<string>("All");
+
+  const allTags = useMemo(() => {
+    const tags = new Set<string>();
+    for (const post of posts) {
+      for (const tag of post.tags) {
+        tags.add(tag);
+      }
+    }
+
+    return ["All", ...Array.from(tags).sort((a, b) => a.localeCompare(b))];
+  }, [posts]);
 
   const filteredPosts = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
-    if (!normalizedQuery) {
-      return posts;
-    }
-
     return posts.filter((post) => {
+      const tagMatch = activeTag === "All" || post.tags.includes(activeTag);
       const haystack = `${post.title} ${post.summary} ${post.tags.join(" ")}`.toLowerCase();
-      return haystack.includes(normalizedQuery);
+      const queryMatch = !normalizedQuery || haystack.includes(normalizedQuery);
+      return tagMatch && queryMatch;
     });
-  }, [posts, query]);
+  }, [activeTag, posts, query]);
 
   return (
     <div className="blog-search-shell">
@@ -44,10 +55,25 @@ export function BlogSearch({ posts }: BlogSearchProps) {
         value={query}
       />
 
+      <div className="explorer-controls" aria-label="Blog filters">
+        {allTags.map((tag) => (
+          <button
+            className={`filter-chip ${activeTag === tag ? "is-active" : ""}`}
+            key={tag}
+            onClick={() => setActiveTag(tag)}
+            type="button"
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+
       <div className="journal-grid">
         {filteredPosts.map((post) => (
           <article className="list-item" key={post.slug}>
-            <p className="meta">{post.date}</p>
+            <p className="meta">
+              {post.date} | {post.readingMinutes} min read
+            </p>
             <h2>
               <Link href={`/blog/${post.slug}`}>{post.title}</Link>
             </h2>

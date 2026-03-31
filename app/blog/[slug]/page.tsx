@@ -34,7 +34,9 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article>
-      <p className="meta">{post.date}</p>
+      <p className="meta">
+        {post.date} | {post.readingMinutes} min read
+      </p>
       <h1>{post.title}</h1>
       <p className="page-intro">{post.summary}</p>
       <div className="article-body" dangerouslySetInnerHTML={{ __html: markdownToHtml(post.content) }} />

@@ -3,6 +3,7 @@ import { getAllContent } from "@/lib/content";
 import { Reveal } from "@/components/Reveal";
 import { SystemsMap } from "@/components/SystemsMap";
 import { ProjectExplorer } from "@/components/ProjectExplorer";
+import { ControlTower } from "@/components/ControlTower";
 
 export default function HomePage() {
   const posts = getAllContent("blog").slice(0, 3);
@@ -113,6 +114,10 @@ export default function HomePage() {
 
       <Reveal>
         <SystemsMap />
+      </Reveal>
+
+      <Reveal>
+        <ControlTower />
       </Reveal>
 
       <Reveal>

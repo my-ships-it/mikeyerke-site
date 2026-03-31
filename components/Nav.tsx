@@ -26,7 +26,12 @@ export function Nav() {
           <ul className="nav-links">
             {links.map((link) => (
               <li key={link.href}>
-                <Link className={pathname === link.href ? "is-active" : ""} href={link.href}>
+                <Link
+                  className={`${isActivePath(pathname, link.href) ? "is-active " : ""}${
+                    link.href === "/hire" ? "nav-cta" : ""
+                  }`}
+                  href={link.href}
+                >
                   {link.label}
                 </Link>
               </li>
@@ -36,4 +41,16 @@ export function Nav() {
       </div>
     </header>
   );
+}
+
+function isActivePath(pathname: string, href: string): boolean {
+  if (pathname === href) {
+    return true;
+  }
+
+  if (href === "/") {
+    return false;
+  }
+
+  return pathname.startsWith(`${href}/`);
 }

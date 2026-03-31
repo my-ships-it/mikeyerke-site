@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CareerTimeline } from "@/components/CareerTimeline";
 
 export const metadata: Metadata = {
   title: "About",
@@ -35,6 +36,8 @@ export default function AboutPage() {
           </p>
         </article>
       </div>
+
+      <CareerTimeline />
     </section>
   );
 }

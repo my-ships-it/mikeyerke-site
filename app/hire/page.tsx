@@ -11,31 +11,48 @@ export default function HirePage() {
     <section>
       <h1>Recruiter Quick View</h1>
       <p className="page-intro">
-        If you have 2 minutes, this page gives you the fastest way to evaluate fit for RevOps and GTM systems
-        leadership roles.
+        If you have 2 minutes, this gives you the fastest read on role fit for RevOps, GTM systems, and
+        AI-enabled operations leadership.
       </p>
+
+      <article className="showcase-card">
+        <p className="eyebrow">What You Are Hiring</p>
+        <h2>An Operator Who Can Architect and Ship</h2>
+        <p>
+          I turn GTM ambiguity into clear execution systems: shared metrics, cleaner handoffs, and automation
+          teams trust enough to adopt.
+        </p>
+        <div className="link-row">
+          <Link className="btn btn-primary" href="/contact">
+            Book Intro Conversation
+          </Link>
+          <Link className="btn btn-secondary" href="/mike-yerke-resume.pdf" target="_blank">
+            Resume PDF
+          </Link>
+        </div>
+      </article>
 
       <div className="impact-grid">
         <article className="impact-card">
-          <p className="meta">Core Strength</p>
-          <h2>Systems Leadership</h2>
-          <p>Cross-functional operating design across Sales, Marketing, and CS workflows.</p>
+          <p className="meta">Best Fit Scope</p>
+          <h2>Director+ Mandates</h2>
+          <p>RevOps and GTM systems ownership with cross-functional execution responsibility.</p>
         </article>
         <article className="impact-card">
-          <p className="meta">Builder Skillset</p>
-          <h2>AI + Automation</h2>
-          <p>Hands-on delivery of workflow automation with strong controls and adoption focus.</p>
+          <p className="meta">Operating Style</p>
+          <h2>Builder-Leader</h2>
+          <p>Strategic framing plus hands-on implementation in the tooling and process layer.</p>
         </article>
         <article className="impact-card">
-          <p className="meta">Business Lens</p>
-          <h2>Revenue Outcomes</h2>
-          <p>Execution tied to conversion lift, cycle-time reduction, and forecast confidence.</p>
+          <p className="meta">Outcome Lens</p>
+          <h2>Measurable Lift</h2>
+          <p>Execution tied to cycle-time reduction, cleaner signal, and higher forecast confidence.</p>
         </article>
       </div>
 
       <div className="list-stack">
         <article className="list-item">
-          <h2>Best Links To Review</h2>
+          <h2>Proof Path</h2>
           <div className="link-row">
             <Link className="btn btn-primary" href="/resume">
               Download Resume
@@ -50,13 +67,29 @@ export default function HirePage() {
         </article>
 
         <article className="list-item">
-          <h2>Open Roles</h2>
+          <h2>90-Day Value Plan</h2>
+          <div className="readiness-list">
+            <p>
+              <strong>Days 1-30:</strong> Audit pipeline signal quality, ownership maps, and process friction.
+            </p>
+            <p>
+              <strong>Days 31-60:</strong> Stand up priority workflow architecture and early automation wins.
+            </p>
+            <p>
+              <strong>Days 61-90:</strong> Operationalize dashboards, governance, and manager enablement loops.
+            </p>
+          </div>
+        </article>
+
+        <article className="list-item">
+          <h2>Open To Roles</h2>
           <p>
-            Open to Director/Head-level roles in RevOps, GTM Systems, and AI-enabled operations leadership.
+            Open to Director and Head-level opportunities across RevOps, GTM Systems, and AI operations
+            leadership.
           </p>
           <div className="link-row">
             <Link className="btn btn-primary" href="/contact">
-              Start Conversation
+              Start The Conversation
             </Link>
           </div>
         </article>

@@ -26,6 +26,7 @@ export type ContentItem = {
   before: string[];
   after: string[];
   impact: ImpactMetric[];
+  readingMinutes: number;
   content: string;
 };
 
@@ -54,8 +55,19 @@ function readMarkdownFile(filePath: string): ContentItem {
     before: toStringArray(data.before),
     after: toStringArray(data.after),
     impact: toImpactMetrics(data.impact),
+    readingMinutes: getReadingMinutes(content),
     content
   };
+}
+
+function getReadingMinutes(markdown: string): number {
+  const plainText = markdown.replace(/[#_*`>\-\[\]\(\)]/g, " ").trim();
+  if (!plainText) {
+    return 1;
+  }
+
+  const wordCount = plainText.split(/\s+/).length;
+  return Math.max(1, Math.round(wordCount / 220));
 }
 
 function toStringArray(value: unknown): string[] {

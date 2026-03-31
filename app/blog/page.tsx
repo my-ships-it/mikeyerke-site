@@ -21,7 +21,9 @@ export default function BlogIndexPage() {
 
       {latest ? (
         <article className="showcase-card page-showcase">
-          <p className="meta">{latest.date} | Featured Essay</p>
+          <p className="meta">
+            {latest.date} | {latest.readingMinutes} min read | Featured Essay
+          </p>
           <h2>
             <Link href={`/blog/${latest.slug}`}>{latest.title}</Link>
           </h2>
