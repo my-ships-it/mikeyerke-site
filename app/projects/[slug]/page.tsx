@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllContent, getContentBySlug, markdownToHtml } from "@/lib/content";
@@ -21,7 +22,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: project.title,
-    description: project.summary
+    description: project.summary,
+    alternates: {
+      canonical: `https://www.mikeyerke.com/projects/${project.slug}`
+    },
+    openGraph: {
+      title: project.title,
+      description: project.summary,
+      type: "article",
+      url: `https://www.mikeyerke.com/projects/${project.slug}`,
+      images: [{ url: `/projects/${project.slug}/opengraph-image`, width: 1200, height: 630, alt: project.title }]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description: project.summary,
+      images: [`/projects/${project.slug}/opengraph-image`]
+    }
   };
 }
 
@@ -74,6 +91,25 @@ export default async function ProjectPage({ params }: Props) {
           ) : null}
         </div>
       </header>
+
+      {project.visuals.length > 0 ? (
+        <section className="case-gallery">
+          {project.visuals.map((visual) => (
+            <figure className="case-visual-card" key={visual.src}>
+              <Image
+                alt={visual.alt}
+                className="case-visual-image"
+                height={900}
+                priority={visual.src === project.visuals[0].src}
+                sizes="(max-width: 820px) 100vw, 70vw"
+                src={visual.src}
+                width={1600}
+              />
+              {visual.caption ? <figcaption>{visual.caption}</figcaption> : null}
+            </figure>
+          ))}
+        </section>
+      ) : null}
 
       {project.impact.length > 0 ? (
         <section className="impact-grid">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAllContent } from "@/lib/content";
 import { Reveal } from "@/components/Reveal";
 import { SystemsMap } from "@/components/SystemsMap";
@@ -71,6 +72,19 @@ export default function HomePage() {
           </div>
           {spotlight ? (
             <article className="showcase-card">
+              {spotlight.coverImage ? (
+                <div className="feature-media">
+                  <Image
+                    alt={spotlight.title}
+                    className="feature-media-image"
+                    height={720}
+                    priority
+                    sizes="(max-width: 820px) 100vw, 70vw"
+                    src={spotlight.coverImage}
+                    width={1280}
+                  />
+                </div>
+              ) : null}
               <p className="meta">Project Spotlight</p>
               <h3>
                 <Link href={`/projects/${spotlight.slug}`}>{spotlight.title}</Link>

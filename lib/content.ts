@@ -11,6 +11,12 @@ export type ImpactMetric = {
   detail?: string;
 };
 
+export type ProjectVisual = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
 export type ContentItem = {
   slug: string;
   title: string;
@@ -18,6 +24,8 @@ export type ContentItem = {
   date: string;
   tags: string[];
   featured: boolean;
+  coverImage?: string;
+  visuals: ProjectVisual[];
   repo?: string;
   demo?: string;
   role?: string;
@@ -47,6 +55,8 @@ function readMarkdownFile(filePath: string): ContentItem {
     date: String(data.date ?? ""),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     featured: Boolean(data.featured ?? false),
+    coverImage: data.coverImage ? String(data.coverImage) : undefined,
+    visuals: toProjectVisuals(data.visuals),
     repo: data.repo ? String(data.repo) : undefined,
     demo: data.demo ? String(data.demo) : undefined,
     role: data.role ? String(data.role) : undefined,
@@ -97,6 +107,31 @@ function toImpactMetrics(value: unknown): ImpactMetric[] {
       label: String(metric.label),
       value: String(metric.value),
       detail: metric.detail ? String(metric.detail) : undefined
+    });
+
+    return accumulator;
+  }, []);
+}
+
+function toProjectVisuals(value: unknown): ProjectVisual[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value.reduce<ProjectVisual[]>((accumulator, item) => {
+    if (typeof item !== "object" || item === null) {
+      return accumulator;
+    }
+
+    const visual = item as { src?: unknown; alt?: unknown; caption?: unknown };
+    if (!visual.src || !visual.alt) {
+      return accumulator;
+    }
+
+    accumulator.push({
+      src: String(visual.src),
+      alt: String(visual.alt),
+      caption: visual.caption ? String(visual.caption) : undefined
     });
 
     return accumulator;

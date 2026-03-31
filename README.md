@@ -7,7 +7,11 @@ Personal website for Mike Yerke, built with Next.js and ready for Vercel deploym
 - Homepage with positioning, featured projects, and latest writing
 - Blog index and blog post pages (Markdown-backed)
 - Projects index and project detail pages (Markdown-backed)
+- Project visuals (cover images + gallery support from markdown frontmatter)
 - About, Resume, and Contact pages
+- Contact funnel with Calendly embed + API-backed form endpoint
+- Open Graph image routes (site-wide + per blog post + per project)
+- Vercel Analytics + Speed Insights wiring
 - SEO metadata, robots.txt, and sitemap.xml
 
 ## Local development
@@ -50,6 +54,11 @@ impact:
   - label: "Intake Speed"
     value: "2.4x faster"
     detail: "Reduced report-to-ticket time"
+coverImage: "/projects/my-project/cover.svg"
+visuals:
+  - src: "/projects/my-project/cover.svg"
+    alt: "Dashboard screenshot"
+    caption: "High-level architecture view"
 ```
 
 ## Resume file
@@ -63,6 +72,24 @@ Replace `public/mike-yerke-resume.pdf` with your actual PDF.
 3. Keep defaults and click Deploy.
 4. In Vercel project settings, add `mikeyerke.com` and `www.mikeyerke.com` as domains.
 5. In Cloudflare DNS, add the records Vercel provides.
+
+## Contact Funnel Setup
+
+The `/contact` page includes:
+
+- Embedded Calendly scheduler
+- API-backed contact form (`POST /api/contact`)
+- Spam controls: honeypot, timing check, origin allowlist, and rate limiting
+
+Environment variables:
+
+- `NEXT_PUBLIC_CALENDLY_URL` (example: `https://calendly.com/your-handle/30min`)
+- `CONTACT_ALLOWED_ORIGINS` (comma-separated, optional)
+- Delivery target (at least one):
+  - `CONTACT_WEBHOOK_URL`
+  - `RESEND_API_KEY` + `CONTACT_FROM_EMAIL` + `CONTACT_TO_EMAIL`
+- Optional bot challenge:
+  - `CONTACT_TURNSTILE_SECRET`
 
 ## Password Protect The Entire Site
 
@@ -103,10 +130,17 @@ Setup:
 
 - This site is static and does not store user accounts, databases, or payment info.
 - Security headers are applied by middleware.
+- Contact endpoint enforces input validation and request throttling.
 - `x-powered-by` header is disabled.
 - Do not commit secrets or API keys to the repo.
 - Keep dependencies updated (`npm outdated`, then patch regularly).
 - Use strong unique passwords for Vercel, GitHub, and Cloudflare and enable 2FA.
+
+## Performance and Analytics
+
+- Next.js image optimization is enabled with AVIF/WebP output.
+- Vercel Analytics and Speed Insights are wired in `app/layout.tsx`.
+- Static media assets under `public/projects/*` are cache-friendly in protected mode.
 
 ## Suggested next edits
 

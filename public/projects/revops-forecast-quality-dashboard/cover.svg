@@ -1,0 +1,24 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10211a"/>
+      <stop offset="100%" stop-color="#1f4a3f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="70" y="70" width="1460" height="760" rx="28" fill="#0f1f19" stroke="#356454" stroke-width="2"/>
+  <text x="130" y="150" fill="#87e0c1" font-size="30" font-family="Arial, Helvetica, sans-serif">Forecast Quality Dashboard</text>
+  <rect x="130" y="220" width="430" height="260" rx="18" fill="#132a22" stroke="#3f7b67"/>
+  <polyline points="170,400 260,360 350,380 440,300 520,260" stroke="#9af0ce" stroke-width="7" fill="none"/>
+  <text x="170" y="455" fill="#c7ffe9" font-size="24" font-family="Arial, Helvetica, sans-serif">Pipeline Confidence Trend</text>
+  <rect x="610" y="220" width="380" height="260" rx="18" fill="#132a22" stroke="#3f7b67"/>
+  <text x="650" y="285" fill="#dcffee" font-size="26" font-family="Arial, Helvetica, sans-serif">High Risk Deals</text>
+  <text x="650" y="340" fill="#8ce0c2" font-size="48" font-family="Arial, Helvetica, sans-serif">14</text>
+  <text x="650" y="390" fill="#9edac7" font-size="24" font-family="Arial, Helvetica, sans-serif">Aging + Slippage flagged</text>
+  <rect x="1040" y="220" width="360" height="260" rx="18" fill="#132a22" stroke="#3f7b67"/>
+  <text x="1080" y="285" fill="#dcffee" font-size="26" font-family="Arial, Helvetica, sans-serif">Coverage Ratio</text>
+  <text x="1080" y="340" fill="#8ce0c2" font-size="48" font-family="Arial, Helvetica, sans-serif">3.3x</text>
+  <text x="1080" y="390" fill="#9edac7" font-size="24" font-family="Arial, Helvetica, sans-serif">With confidence bands</text>
+  <rect x="130" y="560" width="1270" height="190" rx="18" fill="#12261f" stroke="#3a6f5d"/>
+  <text x="180" y="640" fill="#f0fff9" font-size="40" font-family="Arial, Helvetica, sans-serif">Leadership moved from anecdotal to evidence-backed forecast calls.</text>
+</svg>

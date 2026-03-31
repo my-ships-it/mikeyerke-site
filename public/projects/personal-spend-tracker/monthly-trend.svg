@@ -1,0 +1,20 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#26180f"/>
+  <rect x="90" y="90" width="1420" height="720" rx="24" fill="#2b1c11" stroke="#8f6a3f"/>
+  <text x="140" y="170" fill="#ffd7a4" font-size="34" font-family="Arial, Helvetica, sans-serif">Category Heatmap + Trend Alerts</text>
+  <rect x="150" y="230" width="860" height="520" rx="18" fill="#24170f" stroke="#88663e"/>
+  <line x1="220" y1="320" x2="940" y2="320" stroke="#6d5231" stroke-width="2"/>
+  <line x1="220" y1="420" x2="940" y2="420" stroke="#6d5231" stroke-width="2"/>
+  <line x1="220" y1="520" x2="940" y2="520" stroke="#6d5231" stroke-width="2"/>
+  <line x1="220" y1="620" x2="940" y2="620" stroke="#6d5231" stroke-width="2"/>
+  <rect x="260" y="360" width="120" height="80" fill="#a77b45"/>
+  <rect x="420" y="360" width="120" height="80" fill="#c38d4b"/>
+  <rect x="580" y="360" width="120" height="80" fill="#d89e52"/>
+  <rect x="740" y="360" width="120" height="80" fill="#f0b869"/>
+  <rect x="1110" y="230" width="340" height="520" rx="18" fill="#24170f" stroke="#88663e"/>
+  <text x="1160" y="300" fill="#ffe5c4" font-size="26" font-family="Arial, Helvetica, sans-serif">Alert Queue</text>
+  <text x="1160" y="360" fill="#ffd498" font-size="24" font-family="Arial, Helvetica, sans-serif">Dining: +18% vs avg</text>
+  <text x="1160" y="410" fill="#ffd498" font-size="24" font-family="Arial, Helvetica, sans-serif">Travel: +12% this month</text>
+  <text x="1160" y="460" fill="#ffd498" font-size="24" font-family="Arial, Helvetica, sans-serif">Subscriptions: stable</text>
+  <text x="140" y="790" fill="#eecb9e" font-size="24" font-family="Arial, Helvetica, sans-serif">Built as a personal system to test product thinking and insight delivery loops.</text>
+</svg>

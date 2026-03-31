@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Source_Sans_3 } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
@@ -15,7 +17,7 @@ const bodyFont = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mikeyerke.com"),
+  metadataBase: new URL("https://www.mikeyerke.com"),
   title: {
     default: "Mike Yerke | GTM Systems + AI + RevOps",
     template: "%s | Mike Yerke"
@@ -25,9 +27,23 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mike Yerke",
     description: "Projects, writing, and GTM systems work.",
-    url: "https://mikeyerke.com",
+    url: "https://www.mikeyerke.com",
     siteName: "Mike Yerke",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Mike Yerke | GTM Systems + AI + RevOps"
+      }
+    ],
     type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mike Yerke | GTM Systems + AI + RevOps",
+    description: "Projects, writing, and GTM systems work.",
+    images: ["/opengraph-image"]
   },
   alternates: {
     canonical: "https://www.mikeyerke.com"
@@ -63,6 +79,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

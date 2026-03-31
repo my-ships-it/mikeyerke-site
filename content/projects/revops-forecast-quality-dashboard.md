@@ -4,6 +4,14 @@ date: "2026-03-10"
 summary: "A dashboard designed to surface forecast risk and pipeline confidence by segment."
 tags: ["RevOps", "Dashboard", "Forecasting"]
 featured: true
+coverImage: "/projects/revops-forecast-quality-dashboard/cover.svg"
+visuals:
+  - src: "/projects/revops-forecast-quality-dashboard/cover.svg"
+    alt: "Forecast quality dashboard snapshot with confidence trend and risk indicators."
+    caption: "Leadership dashboard design focused on confidence signal and risk inspection."
+  - src: "/projects/revops-forecast-quality-dashboard/risk-grid.svg"
+    alt: "Forecast risk matrix with low to critical buckets and highlighted deal markers."
+    caption: "Shared risk matrix that normalized coaching discussions across managers."
 repo: "https://github.com/my-ships-it"
 role: "RevOps Lead"
 timeline: "6 weeks"

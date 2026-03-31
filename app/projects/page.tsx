@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getAllContent } from "@/lib/content";
 import { ProjectExplorer } from "@/components/ProjectExplorer";
@@ -22,6 +23,19 @@ export default function ProjectsPage() {
 
       {featured ? (
         <article className="showcase-card page-showcase">
+          {featured.coverImage ? (
+            <div className="feature-media">
+              <Image
+                alt={featured.title}
+                className="feature-media-image"
+                height={720}
+                priority
+                sizes="(max-width: 820px) 100vw, 70vw"
+                src={featured.coverImage}
+                width={1280}
+              />
+            </div>
+          ) : null}
           <p className="meta">Featured Build</p>
           <h2>
             <Link href={`/projects/${featured.slug}`}>{featured.title}</Link>

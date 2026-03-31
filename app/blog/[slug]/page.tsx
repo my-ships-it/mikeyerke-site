@@ -20,7 +20,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: post.title,
-    description: post.summary
+    description: post.summary,
+    alternates: {
+      canonical: `https://www.mikeyerke.com/blog/${post.slug}`
+    },
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      type: "article",
+      url: `https://www.mikeyerke.com/blog/${post.slug}`,
+      images: [{ url: `/blog/${post.slug}/opengraph-image`, width: 1200, height: 630, alt: post.title }]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.summary,
+      images: [`/blog/${post.slug}/opengraph-image`]
+    }
   };
 }
 

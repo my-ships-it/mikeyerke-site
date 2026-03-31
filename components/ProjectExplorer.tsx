@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -9,6 +10,7 @@ type ExplorerProject = {
   summary: string;
   tags: string[];
   date: string;
+  coverImage?: string;
 };
 
 type ProjectExplorerProps = {
@@ -55,6 +57,19 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
       <div className="showcase-grid">
         {filteredProjects.map((project) => (
           <article className="card" key={project.slug}>
+            {project.coverImage ? (
+              <div className="project-thumb-wrap">
+                <Image
+                  alt={project.title}
+                  className="project-thumb"
+                  height={720}
+                  loading="lazy"
+                  sizes="(max-width: 820px) 100vw, 33vw"
+                  src={project.coverImage}
+                  width={1280}
+                />
+              </div>
+            ) : null}
             <p className="meta">{project.date}</p>
             <h3>
               <Link href={`/projects/${project.slug}`}>{project.title}</Link>

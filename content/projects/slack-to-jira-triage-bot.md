@@ -4,6 +4,14 @@ date: "2026-03-20"
 summary: "Automated inbound issue capture and triage flow from Slack into structured Jira tickets."
 tags: ["Automation", "Slack", "Jira", "Ops"]
 featured: true
+coverImage: "/projects/slack-to-jira-triage-bot/cover.svg"
+visuals:
+  - src: "/projects/slack-to-jira-triage-bot/cover.svg"
+    alt: "Slack to Jira triage dashboard view with flow cards and impact metrics."
+    caption: "High-level control surface showing intake flow and throughput outcomes."
+  - src: "/projects/slack-to-jira-triage-bot/workflow.svg"
+    alt: "Routing decision workflow from payload capture to owner assignment."
+    caption: "Routing logic converted unstructured requests into deterministic owner assignment."
 repo: "https://github.com/my-ships-it"
 demo: "https://mikeyerke.com"
 role: "Systems Architect + Builder"

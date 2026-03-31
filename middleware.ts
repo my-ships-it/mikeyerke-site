@@ -8,8 +8,7 @@ const SECURITY_HEADERS: Record<string, string> = {
   "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
   "Cross-Origin-Opener-Policy": "same-origin",
   "Cross-Origin-Resource-Policy": "same-origin",
-  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
-  "Cache-Control": "no-store"
+  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload"
 };
 
 function applySecurityHeaders(response: NextResponse) {
@@ -46,14 +45,24 @@ async function secureCompare(left: string, right: string): Promise<boolean> {
 function unauthorizedResponse() {
   const response = new NextResponse("Authentication required", { status: 401 });
   response.headers.set("WWW-Authenticate", `Basic realm="${AUTH_REALM}", charset="UTF-8"`);
+  response.headers.set("Cache-Control", "private, no-store, no-cache, must-revalidate");
   applySecurityHeaders(response);
   return response;
 }
 
 function misconfiguredResponse() {
   const response = new NextResponse("Site protection is not configured correctly.", { status: 503 });
+  response.headers.set("Cache-Control", "private, no-store, no-cache, must-revalidate");
   applySecurityHeaders(response);
   return response;
+}
+
+function isStaticAssetPath(pathname: string): boolean {
+  if (pathname.startsWith("/_next/")) {
+    return true;
+  }
+
+  return /\.[a-zA-Z0-9]+$/.test(pathname);
 }
 
 export async function middleware(request: NextRequest) {
@@ -108,6 +117,9 @@ export async function middleware(request: NextRequest) {
 
   const response = NextResponse.next();
   applySecurityHeaders(response);
+  if (!isStaticAssetPath(pathname)) {
+    response.headers.set("Cache-Control", "private, no-store, no-cache, must-revalidate");
+  }
   return response;
 }
 

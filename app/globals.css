@@ -328,6 +328,20 @@ section {
   pointer-events: none;
 }
 
+.feature-media {
+  margin-bottom: 0.9rem;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #c6d8f3;
+  box-shadow: 0 12px 28px rgba(30, 64, 175, 0.12);
+}
+
+.feature-media-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 .showcase-grid {
   display: grid;
   gap: 1rem;
@@ -396,6 +410,23 @@ code {
 .card a,
 .list-item a {
   text-underline-offset: 0.18em;
+}
+
+.project-thumb-wrap {
+  margin: -1.15rem -1.15rem 0.95rem;
+  border-bottom: 1px solid #d8e3f5;
+  overflow: hidden;
+}
+
+.project-thumb {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 240ms ease;
+}
+
+.card:hover .project-thumb {
+  transform: scale(1.02);
 }
 
 .list-stack {
@@ -669,6 +700,88 @@ code {
   margin: 0;
 }
 
+.contact-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  margin-bottom: 1.25rem;
+}
+
+.calendly-frame-wrap {
+  margin-top: 1rem;
+  border: 1px solid #c5d6ef;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.calendly-frame {
+  width: 100%;
+  min-height: 690px;
+  border: 0;
+}
+
+.contact-form {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.field-row {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.field input,
+.field textarea {
+  font: inherit;
+  font-weight: 500;
+  border: 1px solid #c6d5ee;
+  border-radius: 12px;
+  padding: 0.7rem 0.82rem;
+  background: #fbfdff;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  outline: none;
+}
+
+.field-honeypot {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+.form-success {
+  margin: 0;
+  color: #155724;
+  font-weight: 700;
+}
+
+.form-error {
+  margin: 0;
+  color: #9f1239;
+  font-weight: 700;
+}
+
 .systems-map {
   border: 1px solid #c7d6f1;
   border-radius: 24px;
@@ -767,6 +880,32 @@ code {
   display: grid;
   gap: 0.75rem;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.case-gallery {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.case-visual-card {
+  margin: 0;
+  border: 1px solid #cad7ef;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.case-visual-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.case-visual-card figcaption {
+  border-top: 1px solid #d8e1f0;
+  padding: 0.65rem 0.85rem 0.78rem;
+  color: #4a5f86;
+  font-size: 0.9rem;
 }
 
 .impact-card {
@@ -932,7 +1071,19 @@ code {
     padding: 1rem;
   }
 
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
   .tower-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project-thumb-wrap {
+    margin-top: -1rem;
   }
 }

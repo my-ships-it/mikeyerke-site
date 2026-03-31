@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 import { getAllContent } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://mikeyerke.com";
-  const staticRoutes = ["", "/about", "/projects", "/blog", "/resume", "/contact"].map((route) => ({
+  const base = "https://www.mikeyerke.com";
+  const staticRoutes = ["", "/about", "/projects", "/blog", "/resume", "/contact", "/hire"].map((route) => ({
     url: `${base}${route}`,
     lastModified: new Date()
   }));

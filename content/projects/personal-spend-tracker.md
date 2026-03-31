@@ -4,6 +4,14 @@ date: "2026-02-14"
 summary: "A simple app for monthly spend visibility and category-level trend analysis."
 tags: ["Finance", "App", "Analytics"]
 featured: false
+coverImage: "/projects/personal-spend-tracker/cover.svg"
+visuals:
+  - src: "/projects/personal-spend-tracker/cover.svg"
+    alt: "Personal spend tracker screen showing monthly trend and budget status cards."
+    caption: "Primary dashboard with trend line, budget pacing, and drift indicators."
+  - src: "/projects/personal-spend-tracker/monthly-trend.svg"
+    alt: "Category heatmap and monthly alert queue for spending behavior shifts."
+    caption: "Category-level alerting view for early detection of spending pattern changes."
 repo: "https://github.com/my-ships-it"
 role: "Product Builder"
 timeline: "2 weeks"
