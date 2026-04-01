@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
+import { ExperienceHighlights } from "@/components/ExperienceHighlights";
+import { SystemsMap } from "@/components/SystemsMap";
 import { getAllContent } from "@/lib/content";
 
 const confidenceRank: Record<string, number> = {
@@ -38,7 +40,7 @@ export default function HomePage() {
               <h1>I build GTM systems that teams actually use.</h1>
               <p>
                 I design practical operating systems for Sales, Marketing, and Customer Success teams. The
-                focus is clear handoffs, clean data, and measurable outcomes.
+                focus is clear handoffs, clean data, and measurable outcomes that leadership can actually trust.
               </p>
               <div className="hero-actions">
                 <Link className="btn btn-primary" href="/projects">
@@ -133,6 +135,18 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+      </Reveal>
+
+      <Reveal>
+        <SystemsMap />
+      </Reveal>
+
+      <Reveal>
+        <ExperienceHighlights
+          compact
+          intro="Resume-backed outcomes from UiPath and Box (pre-Confluent), included to ground this portfolio in prior operating results."
+          title="Prior Role Outcomes"
+        />
       </Reveal>
 
       <Reveal>

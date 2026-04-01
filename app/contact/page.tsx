@@ -12,6 +12,17 @@ export default function ContactPage() {
   const calendlyBaseUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/mikeyerke";
   const calendlyEmbedUrl = `${calendlyBaseUrl}?hide_event_type_details=1&hide_gdpr_banner=1`;
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const isProduction = process.env.NODE_ENV === "production";
+  const hasTurnstileProtection = Boolean(turnstileSiteKey && process.env.CONTACT_TURNSTILE_SECRET);
+  const hasDeliveryChannel = Boolean(
+    process.env.CONTACT_WEBHOOK_URL ||
+      (process.env.RESEND_API_KEY && process.env.CONTACT_FROM_EMAIL && process.env.CONTACT_TO_EMAIL)
+  );
+  const contactFormEnabled = !isProduction || (hasTurnstileProtection && hasDeliveryChannel);
+  const missingItems = [
+    hasTurnstileProtection ? null : "Captcha protection",
+    hasDeliveryChannel ? null : "Delivery channel (Webhook or Resend)"
+  ].filter(Boolean) as string[];
 
   return (
     <section>
@@ -47,7 +58,20 @@ export default function ContactPage() {
         <article className="list-item">
           <h2>Send a detailed note</h2>
           <p>Use this form when you want to share role context, scope, or workflow challenges up front.</p>
-          <ContactForm turnstileSiteKey={turnstileSiteKey} />
+          {contactFormEnabled ? (
+            <ContactForm turnstileSiteKey={turnstileSiteKey} />
+          ) : (
+            <div className="readiness-list">
+              <p>
+                The secure form is temporarily offline until required configuration is complete for production.
+              </p>
+              {missingItems.length > 0 ? <p className="meta">Missing: {missingItems.join(", ")}</p> : null}
+              <p>
+                Please email directly at <a href="mailto:mike@mikeyerke.com">mike@mikeyerke.com</a> in the
+                meantime.
+              </p>
+            </div>
+          )}
         </article>
       </div>
 

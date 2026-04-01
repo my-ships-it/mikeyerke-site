@@ -12,36 +12,47 @@ type Milestone = {
 
 const milestones: Milestone[] = [
   {
-    id: "foundation",
-    phase: "Phase 1",
-    title: "Ops Foundation",
-    summary: "Built deep operator intuition for how revenue teams actually execute day-to-day.",
+    id: "box",
+    phase: "2017-2019",
+    title: "Box | Sales Development Foundation",
+    summary: "Started in hands-on outbound execution and team leadership in enterprise SaaS.",
     bullets: [
-      "Created practical process frameworks used by cross-functional teams.",
-      "Focused on reducing handoff friction and role ambiguity.",
-      "Developed pattern recognition for what breaks scaling motions."
+      "Built $2.7M pipeline and $1.4M ARR while qualifying 570 enterprise opportunities.",
+      "Led all outbound reps in Q3 FY19 pipeline attainment at $1.1M.",
+      "Scaled team adoption of LinkedIn Sales Navigator and consistent outbound messaging."
     ]
   },
   {
-    id: "systems",
-    phase: "Phase 2",
-    title: "Systems Leadership",
-    summary: "Shifted from process owner to systems architect across the GTM lifecycle.",
+    id: "uipath-revops",
+    phase: "2020-2022",
+    title: "UiPath | RevOps Program To GTM Manager",
+    summary: "Moved from program execution into owning GTM systems strategy and operations.",
     bullets: [
-      "Designed RevOps operating models tied to business outcomes.",
-      "Implemented workflow automation with explicit control layers.",
-      "Enabled teams with documentation and adoption playbooks."
+      "Implemented core GTM tooling (Gong, ZoomInfo, TechTarget) and improved sales productivity.",
+      "Increased qualified opportunities by 34% and reduced lead-to-follow-up time by 55%.",
+      "Improved SAL conversion by 16% via standardized process and web-form automation."
     ]
   },
   {
-    id: "ai",
-    phase: "Phase 3",
-    title: "AI Enablement",
-    summary: "Integrated AI into production workflows with governance and reliability in mind.",
+    id: "uipath-senior",
+    phase: "2022-2024",
+    title: "UiPath | Senior Manager, GTM Technology",
+    summary: "Led global GTM systems ownership, operating governance, and cross-functional execution.",
     bullets: [
-      "Established AI-assisted execution patterns in GTM operations.",
-      "Connected enrichment, scoring, and routing into one signal pipeline.",
-      "Balanced speed-to-value with maintainability and observability."
+      "Managed a $3M GTM technology stack and reduced spend by $720K through consolidation.",
+      "Generated $18M net new pipeline with an automated competitive take-out campaign.",
+      "Reduced user access tickets by 52% and improved rep productivity by 18%."
+    ]
+  },
+  {
+    id: "current",
+    phase: "2024-Present",
+    title: "Current Chapter",
+    summary: "Focused on GTM systems and AI-enabled operations in enterprise SaaS.",
+    bullets: [
+      "Building next-level operating systems that connect strategy to frontline execution.",
+      "Developing artifact-driven frameworks for forecasting, routing, and lifecycle governance.",
+      "Confluent-specific outcomes are intentionally excluded here until finalized for publication."
     ]
   }
 ];

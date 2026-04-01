@@ -17,13 +17,16 @@ export default function ResumePage() {
     <section>
       <h1>Resume</h1>
       <p className="page-intro">
-        {hasResumePdf ? "Latest resume is available as a PDF." : "Upload the file to /public/mike-yerke-resume.pdf."}
+        {hasResumePdf
+          ? "Latest uploaded resume is available as a PDF."
+          : "Upload the file to /public/mike-yerke-resume.pdf."}
       </p>
+      <p className="meta">Current file reflects pre-Confluent experience (2017-2024 snapshot).</p>
       {resumeUpdatedAt ? <p className="meta">File updated: {resumeUpdatedAt}</p> : null}
 
       <div className="link-row">
         {hasResumePdf ? (
-          <Link className="btn btn-primary" href="/mike-yerke-resume.pdf" target="_blank">
+          <Link className="btn btn-primary" href="/mike-yerke-resume.pdf" rel="noreferrer" target="_blank">
             Download Resume (PDF)
           </Link>
         ) : (

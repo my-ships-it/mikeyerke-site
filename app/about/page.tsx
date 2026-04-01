@@ -11,14 +11,14 @@ export default function AboutPage() {
     <section>
       <h1>About</h1>
       <p className="page-intro">
-        I work at the intersection of GTM systems, AI enablement, and RevOps. My focus is turning messy
-        cross-functional workflows into simple systems teams can actually run.
+        I operate at the intersection of GTM systems, AI enablement, and RevOps. The focus is turning messy
+        cross-functional workflows into simple operating systems teams can actually run.
       </p>
 
       <div className="list-stack">
         <article className="list-item">
           <h2>What I Optimize For</h2>
-          <p>Clear ownership, faster decision cycles, and systems teams trust enough to adopt.</p>
+          <p>Clear ownership, faster decision cycles, and systems that teams trust enough to adopt.</p>
         </article>
 
         <article className="list-item">
@@ -31,6 +31,14 @@ export default function AboutPage() {
           <p>
             I combine strategic framing with hands-on execution. The goal is measurable business lift, not just
             shipping tools.
+          </p>
+        </article>
+
+        <article className="list-item">
+          <h2>Evidence Standard</h2>
+          <p>
+            This site separates portfolio outcomes from prior-role outcomes. Published metrics are either linked
+            to artifact notes or sourced from the 2024 pre-Confluent resume snapshot.
           </p>
         </article>
       </div>

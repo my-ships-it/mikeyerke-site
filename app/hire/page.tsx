@@ -3,6 +3,8 @@ import Link from "next/link";
 import { VideoWalkthrough } from "@/components/VideoWalkthrough";
 import { VerifiedOutcomesBoard } from "@/components/VerifiedOutcomesBoard";
 import { SocialProofPanel } from "@/components/SocialProofPanel";
+import { ExperienceHighlights } from "@/components/ExperienceHighlights";
+import { GtmSimulator } from "@/components/GtmSimulator";
 import { hireTracks } from "@/lib/hireTracks";
 
 export const metadata: Metadata = {
@@ -19,6 +21,7 @@ export default function HirePage() {
       <h1>Executive Brief</h1>
       <p className="page-intro">
         For hiring teams evaluating Director+ scope across RevOps, GTM systems, and AI-enabled operations.
+        Portfolio outcomes and pre-Confluent resume outcomes are separated below for clarity.
       </p>
 
       <article className="showcase-card">
@@ -59,6 +62,14 @@ export default function HirePage() {
       </article>
 
       <VerifiedOutcomesBoard compact title="Outcome Evidence" />
+
+      <ExperienceHighlights
+        compact
+        intro="These results are from documented prior roles (UiPath and Box) in the 2024 resume snapshot."
+        title="Pre-Confluent Career Outcomes"
+      />
+
+      <GtmSimulator />
 
       <section>
         <div className="section-header">
