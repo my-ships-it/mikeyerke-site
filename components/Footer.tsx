@@ -10,6 +10,7 @@ export function Footer() {
           <Link href="/blog">Writing</Link>
           <Link href="/hire">Executive Brief</Link>
           <Link href="/trust">Security</Link>
+          <Link href="/privacy">Privacy</Link>
         </p>
       </div>
     </footer>

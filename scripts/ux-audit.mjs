@@ -23,6 +23,7 @@ const routes = [
   "/hire",
   "/artifacts",
   "/trust",
+  "/privacy",
   "/cms",
   ...projects.map((slug) => `/projects/${slug}`),
   ...posts.map((slug) => `/blog/${slug}`),

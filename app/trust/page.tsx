@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   }
 };
 
+const LAST_UPDATED = "2026-04-01";
+
 export default function TrustPage() {
   return (
     <section>
@@ -16,6 +18,7 @@ export default function TrustPage() {
       <p className="page-intro">
         This portfolio uses privacy-first defaults, strict security headers, and minimal data collection.
       </p>
+      <p className="meta">Last updated: {LAST_UPDATED}</p>
 
       <div className="list-stack">
         <article className="list-item">
@@ -47,6 +50,15 @@ export default function TrustPage() {
           <p>
             Platform credentials use unique passwords and multi-factor authentication. Dependencies and deployment
             settings are periodically reviewed for updates.
+          </p>
+        </article>
+
+        <article className="list-item">
+          <h2>Disclosure and Policy Links</h2>
+          <p>
+            Security contact and disclosure metadata are available at{" "}
+            <Link href="/.well-known/security.txt">/.well-known/security.txt</Link>. Privacy details are on the{" "}
+            <Link href="/privacy">privacy page</Link>.
           </p>
         </article>
       </div>

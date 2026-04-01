@@ -9,7 +9,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   const base = "https://www.mikeyerke.com";
-  const staticRoutes = ["", "/about", "/projects", "/blog", "/resume", "/contact", "/hire", "/artifacts", "/trust"].map((route) => ({
+  const staticRoutes = [
+    "",
+    "/about",
+    "/projects",
+    "/blog",
+    "/resume",
+    "/contact",
+    "/hire",
+    "/artifacts",
+    "/trust",
+    "/privacy"
+  ].map((route) => ({
     url: `${base}${route}`,
     lastModified: new Date()
   }));

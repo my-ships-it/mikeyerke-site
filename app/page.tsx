@@ -13,6 +13,7 @@ export default function HomePage() {
   const projects = getAllContent("projects");
   const posts = getAllContent("blog").slice(0, 3);
   const featuredProjects = projects.slice(0, 3);
+  const latestContentDate = [projects[0]?.date, posts[0]?.date].filter(Boolean).sort().reverse()[0];
 
   const strongestProject = [...projects].sort((left, right) => {
     const leftConfidence = confidenceRank[left.impact[0]?.confidenceLevel ?? ""] ?? 0;
@@ -47,21 +48,19 @@ export default function HomePage() {
                   Resume PDF
                 </Link>
               </div>
+              <p className="meta">{latestContentDate ? `Content updated: ${latestContentDate}` : null}</p>
             </div>
 
             <aside className="hero-panel">
               <p className="meta">Start Here</p>
-              {strongestProject ? (
-                <>
-                  <h3>{strongestProject.title}</h3>
-                  <p>{strongestProject.summary}</p>
-                  <Link className="inline-cta" href={`/projects/${strongestProject.slug}`}>
-                    Read this case study
-                  </Link>
-                </>
-              ) : (
-                <p>Case studies are available on the projects page.</p>
-              )}
+              <ol>
+                <li>Open the resume for role scope and experience summary.</li>
+                <li>Review 1-2 case studies for implementation depth.</li>
+                <li>Use the contact page for a focused intro call.</li>
+              </ol>
+              <Link className="inline-cta" href="/hire">
+                Open executive brief
+              </Link>
             </aside>
           </div>
         </section>

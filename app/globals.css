@@ -1345,6 +1345,16 @@ code {
   color: var(--muted);
 }
 
+.hero-panel ol {
+  margin: 0.6rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.hero-panel li {
+  margin: 0.3rem 0;
+  color: var(--muted);
+}
+
 .inline-cta {
   color: var(--brand);
   text-decoration: underline;

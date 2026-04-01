@@ -49,7 +49,7 @@ export default function HirePage() {
           <Link className="btn btn-primary" href="/contact">
             Schedule Intro
           </Link>
-          <Link className="btn btn-secondary" href="/mike-yerke-resume.pdf" target="_blank">
+          <Link className="btn btn-secondary" href="/mike-yerke-resume.pdf" target="_blank" rel="noreferrer">
             Resume PDF
           </Link>
           <Link className="btn btn-secondary" href="/artifacts">
