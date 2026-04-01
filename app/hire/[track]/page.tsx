@@ -90,8 +90,8 @@ export default async function HireTrackPage({ params }: Props) {
       </div>
 
       <section className="cta-banner">
-        <p className="eyebrow">Continue Evaluation</p>
-        <h2>Use the links below for full diligence flow.</h2>
+        <p className="eyebrow">Next Step</p>
+        <h2>Use the links below to continue the evaluation flow.</h2>
         <div className="link-row">
           <Link className="btn btn-primary" href="/contact">
             Contact Mike

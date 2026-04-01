@@ -50,10 +50,9 @@ const artifacts = [
 export default function ArtifactsPage() {
   return (
     <section>
-      <h1>Flagship Artifacts</h1>
+      <h1>Artifacts</h1>
       <p className="page-intro">
-        Downloadable frameworks used to communicate systems thinking, execution discipline, and leadership
-        operating style.
+        Supporting documents for case studies, operating frameworks, and measurement notes.
       </p>
 
       <div className="artifact-grid">
@@ -62,8 +61,8 @@ export default function ArtifactsPage() {
             <h2>{artifact.title}</h2>
             <p>{artifact.description}</p>
             <div className="link-row">
-              <Link className="btn btn-primary" download href={artifact.href}>
-                Download
+              <Link className="btn btn-primary" href={artifact.href} rel="noreferrer" target="_blank">
+                Open
               </Link>
             </div>
           </article>

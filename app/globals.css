@@ -1,18 +1,18 @@
 :root {
-  --font-display: "Avenir Next", "Avenir Next Condensed", "Trebuchet MS", "Segoe UI", sans-serif;
-  --font-body: "Avenir Next", "Avenir", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  --bg: #f7f7f4;
-  --bg-accent: #e8f2ff;
+  --font-display: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "Manrope", "Avenir", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --bg: #f5f7fb;
+  --bg-accent: #f5f7fb;
   --surface: #ffffff;
-  --surface-alt: #f9fbff;
-  --text: #101318;
-  --muted: #5e6673;
-  --line: #d6deeb;
-  --brand: #1d4ed8;
-  --brand-strong: #1e3a8a;
-  --radius: 20px;
-  --radius-sm: 12px;
-  --shadow-soft: 0 8px 30px rgba(17, 24, 39, 0.08);
+  --surface-alt: #fbfcff;
+  --text: #111827;
+  --muted: #4b5563;
+  --line: #d8deea;
+  --brand: #0f766e;
+  --brand-strong: #115e59;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow-soft: 0 4px 18px rgba(15, 23, 42, 0.05);
 }
 
 * {
@@ -27,22 +27,11 @@ body {
   color: var(--text);
   font-family: var(--font-body), "Segoe UI", Helvetica, Arial, sans-serif;
   line-height: 1.6;
-  background:
-    radial-gradient(circle at 0% 15%, #deebff 0%, transparent 28%),
-    radial-gradient(circle at 88% 15%, #dff7f4 0%, transparent 24%),
-    linear-gradient(180deg, var(--bg-accent) 0%, var(--bg) 38%);
+  background: var(--bg);
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(rgba(46, 102, 214, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(46, 102, 214, 0.06) 1px, transparent 1px);
-  background-size: 34px 34px;
-  mask-image: radial-gradient(circle at center, black 36%, transparent 100%);
-  z-index: -1;
+  display: none;
 }
 
 .skip-link {
@@ -1238,6 +1227,270 @@ code {
   text-decoration: none;
 }
 
+/* 2026 minimal refresh */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: rgba(245, 247, 251, 0.92);
+  backdrop-filter: saturate(120%) blur(8px);
+}
+
+.nav-shell {
+  min-height: 68px;
+}
+
+.brand {
+  font-size: 1.2rem;
+}
+
+.nav-links li {
+  flex: 0 0 auto;
+}
+
+.nav-links a {
+  color: var(--muted);
+  background: transparent;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+  background: #e9eef6;
+}
+
+.nav-links a.is-active {
+  background: #111827;
+  color: #ffffff;
+}
+
+.nav-links a.nav-cta {
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.nav-links a.nav-cta:hover {
+  background: #f6f8fc;
+}
+
+.nav-links a.nav-cta.is-active {
+  border-color: #111827;
+}
+
+.page-wrap {
+  padding: 1.8rem 0 3.5rem;
+}
+
+.hero,
+.showcase-card,
+.card,
+.list-item,
+.cta-banner,
+.outcomes-board,
+.control-tower,
+.systems-map,
+.journey-shell,
+.simulator-shell,
+.video-walkthrough,
+.social-proof-panel,
+.leadership-layer,
+.architecture-wrap,
+.timeline-shell,
+.case-hero,
+.systems-board,
+.tower-panel,
+.tower-side,
+.simulator-controls,
+.simulator-results,
+.timeline-panel,
+.case-meta-card,
+.impact-card,
+.outcome-card,
+.journey-card,
+.leadership-card,
+.tower-outcome,
+.systems-node,
+.architecture-card,
+.case-visual-card {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: none;
+}
+
+.hero,
+.showcase-card,
+.card,
+.list-item {
+  animation: none;
+}
+
+.hero::after,
+.showcase-card::after {
+  display: none;
+}
+
+.hero {
+  padding: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.hero-layout {
+  align-items: start;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.3rem);
+}
+
+.hero p {
+  font-size: 1.04rem;
+  color: var(--muted);
+}
+
+.inline-cta {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.btn {
+  padding: 0.6rem 1rem;
+  transform: none !important;
+}
+
+.btn-primary {
+  background: #111827;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  background: #1f2937;
+}
+
+.btn-secondary {
+  border-color: var(--line);
+  background: #ffffff;
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: #f6f8fc;
+}
+
+.card,
+.list-item {
+  padding: 1rem;
+  transition: border-color 140ms ease;
+}
+
+.card:hover,
+.list-item:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: #bcc6d8;
+}
+
+.project-thumb-wrap {
+  margin: -1rem -1rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.feature-media {
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.section-header a {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.meta {
+  color: #667085;
+}
+
+.tag {
+  background: #f4f6fa;
+  color: #3f4a5a;
+  border-color: #d6deea;
+}
+
+.filter-chip,
+.tower-scenario,
+.tower-view,
+.systems-tab,
+.timeline-tab {
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid var(--line);
+}
+
+.filter-chip:hover,
+.tower-scenario:hover,
+.tower-view:hover,
+.systems-tab:hover,
+.timeline-tab:hover {
+  transform: none;
+  background: #edf2f8;
+}
+
+.filter-chip.is-active,
+.tower-scenario.is-active,
+.tower-view.is-active,
+.systems-tab.is-active,
+.timeline-tab.is-active {
+  border-color: #111827;
+  background: #111827;
+  color: #ffffff;
+}
+
+.search-input,
+.field input,
+.field textarea {
+  border: 1px solid var(--line);
+  background: #ffffff;
+}
+
+.search-input:focus,
+.field input:focus,
+.field textarea:focus {
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.12);
+}
+
+.article-body {
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.article-body p {
+  font-size: 1rem;
+}
+
+.calendly-frame-wrap,
+.video-frame-wrap {
+  border: 1px solid var(--line);
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 1.1rem 0 1.8rem;
+  background: transparent;
+}
+
+.footer-links a {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.reveal.reveal-ready,
+.reveal.reveal-ready.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @keyframes rise-in {
   from {
     opacity: 0;
@@ -1263,12 +1516,16 @@ code {
 @media (max-width: 820px) {
   .nav-shell {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     padding: 0.85rem 0;
   }
 
   .nav-links {
     justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    width: 100%;
   }
 
   .page-wrap {

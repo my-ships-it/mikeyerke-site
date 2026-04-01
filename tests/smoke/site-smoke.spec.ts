@@ -3,9 +3,9 @@ import { expect, test } from "@playwright/test";
 test("homepage renders core leadership positioning", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { level: 1 })).toContainText(/Director-Level RevOps Leadership/i);
-  await expect(page.getByRole("link", { name: "Hire" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Measured Case Study" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(/I build GTM systems that teams actually use/i);
+  await expect(page.getByRole("banner").getByRole("link", { name: "Brief", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Proof, not claims/i })).toBeVisible();
 });
 
 test("projects page tag filter narrows visible cards", async ({ page }) => {
@@ -26,8 +26,8 @@ test("hire page exposes evaluator path and outcomes", async ({ page }) => {
   await page.goto("/hire");
 
   await expect(page.getByRole("heading", { level: 1, name: "Executive Brief" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "2-Minute Evaluator Path" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Outcome Evidence" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Role-Specific Tracks" })).toBeVisible();
 });
 
 test("contact form can be completed to ready-to-submit state", async ({ page }) => {

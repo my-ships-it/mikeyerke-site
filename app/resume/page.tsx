@@ -16,9 +16,7 @@ export default function ResumePage() {
     <section>
       <h1>Resume</h1>
       <p className="page-intro">
-        {hasResumePdf
-          ? "Latest resume is available as a downloadable PDF."
-          : "Add your latest PDF to /public/mike-yerke-resume.pdf."}
+        {hasResumePdf ? "Latest resume is available as a PDF." : "Upload the file to /public/mike-yerke-resume.pdf."}
       </p>
 
       <div className="link-row">
@@ -29,21 +27,21 @@ export default function ResumePage() {
         ) : (
           <span className="meta">Resume PDF not uploaded yet.</span>
         )}
+        <Link className="btn btn-secondary" href="/projects">
+          View Work
+        </Link>
         <Link className="btn btn-secondary" href="/contact">
-          Contact Mike
+          Contact
+        </Link>
+        <Link className="btn btn-secondary" href="/hire">
+          Executive Brief
         </Link>
       </div>
 
-      <div className="list-stack">
-        <article className="list-item">
-          <h2>Current Focus</h2>
-          <p>GTM systems design, AI operationalization, and high-accountability RevOps leadership.</p>
-        </article>
-        <article className="list-item">
-          <h2>Hiring Use Case</h2>
-          <p>Use this page as a single link for resume, project proof, thought leadership, and direct contact.</p>
-        </article>
-      </div>
+      <section className="list-item">
+        <h2>Current Focus</h2>
+        <p>GTM systems design, AI operationalization, and high-accountability RevOps leadership.</p>
+      </section>
     </section>
   );
 }

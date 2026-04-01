@@ -5,7 +5,7 @@ import { getAllContent } from "@/lib/content";
 import { ProjectExplorer } from "@/components/ProjectExplorer";
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "Work",
   description: "Hands-on projects from GTM systems, AI automation, and RevOps tooling."
 };
 
@@ -16,9 +16,9 @@ export default function ProjectsPage() {
 
   return (
     <section>
-      <h1>Projects</h1>
+      <h1>Work</h1>
       <p className="page-intro">
-        Systems-heavy builds across GTM operations, AI workflow design, and execution tooling.
+        Systems-focused builds across GTM operations, AI workflows, and execution tooling.
       </p>
 
       {featured ? (

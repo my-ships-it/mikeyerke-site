@@ -14,8 +14,7 @@ export default function TrustPage() {
     <section>
       <h1>Trust and Security</h1>
       <p className="page-intro">
-        This site is designed as a portfolio and hiring hub with privacy-first defaults and minimal data
-        collection.
+        This portfolio uses privacy-first defaults, strict security headers, and minimal data collection.
       </p>
 
       <div className="list-stack">
@@ -60,7 +59,7 @@ export default function TrustPage() {
             Contact Mike
           </Link>
           <Link className="btn btn-secondary" href="/hire">
-            Recruiter Brief
+            Executive Brief
           </Link>
         </div>
       </section>

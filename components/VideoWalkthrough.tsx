@@ -45,33 +45,14 @@ function hasLocalWalkthroughVideo(): boolean {
 export function VideoWalkthrough({
   title = "2-Minute Walkthrough",
   description = "A concise walkthrough helps recruiters quickly evaluate systems thinking, technical depth, and communication style.",
-  ctaLabel = "Open Recruiter Quick View"
+  ctaLabel = "Open Executive Brief"
 }: VideoWalkthroughProps) {
   const rawVideoUrl = process.env.NEXT_PUBLIC_WALKTHROUGH_VIDEO_URL;
   const embedUrl = rawVideoUrl ? toEmbedUrl(rawVideoUrl) : "";
   const showLocalVideo = !embedUrl && hasLocalWalkthroughVideo();
 
   if (!embedUrl && !showLocalVideo) {
-    return (
-      <section className="video-walkthrough">
-        <div className="section-header">
-          <h2>{title}</h2>
-        </div>
-        <p className="page-intro">{description}</p>
-        <article className="list-item">
-          <p className="meta">Walkthrough is configured to publish from either:</p>
-          <ul>
-            <li>`NEXT_PUBLIC_WALKTHROUGH_VIDEO_URL` (YouTube or Vimeo)</li>
-            <li>`/public/walkthrough/mike-yerke-walkthrough.webm` (self-hosted)</li>
-          </ul>
-        </article>
-        <div className="link-row">
-          <Link className="btn btn-secondary" href="/hire">
-            {ctaLabel}
-          </Link>
-        </div>
-      </section>
-    );
+    return null;
   }
 
   return (

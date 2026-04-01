@@ -11,16 +11,14 @@ export default function AboutPage() {
     <section>
       <h1>About</h1>
       <p className="page-intro">
-        I operate at the intersection of GTM systems, AI enablement, and revenue operations. My work is about
-        turning messy cross-functional workflows into clear, scalable operating systems.
+        I work at the intersection of GTM systems, AI enablement, and RevOps. My focus is turning messy
+        cross-functional workflows into simple systems teams can actually run.
       </p>
 
       <div className="list-stack">
         <article className="list-item">
           <h2>What I Optimize For</h2>
-          <p>
-            Better decision signal, faster execution cycles, and systems that teams trust enough to adopt.
-          </p>
+          <p>Clear ownership, faster decision cycles, and systems teams trust enough to adopt.</p>
         </article>
 
         <article className="list-item">
@@ -31,8 +29,8 @@ export default function AboutPage() {
         <article className="list-item">
           <h2>How I Work</h2>
           <p>
-            I pair strategic framing with operator-level execution. The goal is measurable business lift, not
-            just shipping tools.
+            I combine strategic framing with hands-on execution. The goal is measurable business lift, not just
+            shipping tools.
           </p>
         </article>
       </div>

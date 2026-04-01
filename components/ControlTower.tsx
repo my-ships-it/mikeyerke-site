@@ -97,7 +97,7 @@ export function ControlTower() {
     <section className="control-tower">
       <div className="section-header">
         <h2>GTM Control Tower</h2>
-        <Link href="/hire">Recruiter Quick View</Link>
+        <Link href="/hire">Executive Brief</Link>
       </div>
       <p className="page-intro">
         Select a scenario to inspect how I diagnose operational failure, design systems, and drive measurable

@@ -5,12 +5,12 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
+  { href: "/projects", label: "Work" },
+  { href: "/blog", label: "Writing" },
   { href: "/about", label: "About" },
   { href: "/resume", label: "Resume" },
   { href: "/contact", label: "Contact" },
-  { href: "/hire", label: "Hire" }
+  { href: "/hire", label: "Brief" }
 ];
 
 export function Nav() {

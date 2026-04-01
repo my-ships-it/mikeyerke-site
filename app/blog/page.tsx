@@ -4,7 +4,7 @@ import { getAllContent } from "@/lib/content";
 import { BlogSearch } from "@/components/BlogSearch";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Writing",
   description: "Writing on GTM systems, AI operations, and RevOps execution."
 };
 
@@ -14,9 +14,9 @@ export default function BlogIndexPage() {
 
   return (
     <section>
-      <h1>Blog</h1>
+      <h1>Writing</h1>
       <p className="page-intro">
-        Ideas, playbooks, and operating principles for scaling GTM execution with AI and strong systems design.
+        Notes and playbooks on GTM systems, RevOps execution, and AI operations.
       </p>
 
       {latest ? (

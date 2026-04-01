@@ -31,11 +31,9 @@ export default function ContactPage() {
 
       <div className="contact-grid">
         <article className="showcase-card">
-          <p className="eyebrow">Book Time Directly</p>
-          <h2>Schedule A 30-Minute Intro</h2>
-          <p>
-            The fastest path is a live conversation. Use the scheduler below, or open Calendly in a new tab.
-          </p>
+          <p className="eyebrow">Book Time</p>
+          <h2>Schedule a 30-minute intro</h2>
+          <p>The fastest path is a live conversation. Use the scheduler below or open Calendly in a new tab.</p>
           <div className="link-row">
             <Link className="btn btn-primary" href={calendlyBaseUrl} rel="noreferrer" target="_blank">
               Open Calendly
@@ -47,7 +45,7 @@ export default function ContactPage() {
         </article>
 
         <article className="list-item">
-          <h2>Send A Detailed Note</h2>
+          <h2>Send a detailed note</h2>
           <p>Use this form when you want to share role context, scope, or workflow challenges up front.</p>
           <ContactForm turnstileSiteKey={turnstileSiteKey} />
         </article>

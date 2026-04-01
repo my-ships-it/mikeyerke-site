@@ -218,14 +218,14 @@ export default async function ProjectPage({ params }: Props) {
       <section className="article-body" dangerouslySetInnerHTML={{ __html: markdownToHtml(project.content) }} />
 
       <section className="cta-banner">
-        <p className="eyebrow">Like This Build Style?</p>
-        <h2>Let us talk about your GTM systems roadmap.</h2>
+        <p className="eyebrow">Interested In Similar Work?</p>
+        <h2>Let&apos;s talk about your GTM systems roadmap.</h2>
         <div className="link-row">
           <Link className="btn btn-primary" href="/contact">
             Contact Mike
           </Link>
           <Link className="btn btn-secondary" href="/hire">
-            Recruiter Quick View
+            Executive Brief
           </Link>
         </div>
       </section>

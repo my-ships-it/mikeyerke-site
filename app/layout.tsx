@@ -44,6 +44,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const enableVercelScripts = process.env.NODE_ENV === "production" && process.env.VERCEL === "1";
+
   return (
     <html lang="en">
       <body>
@@ -68,8 +70,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <Analytics />
-        <SpeedInsights />
+        {enableVercelScripts ? <Analytics /> : null}
+        {enableVercelScripts ? <SpeedInsights /> : null}
       </body>
     </html>
   );
