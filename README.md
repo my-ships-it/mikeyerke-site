@@ -27,6 +27,20 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Recommended Ship Workflow
+
+Use a branch + PR flow for safer releases:
+
+1. Create branch: `codex/<feature-name>`
+2. Run checks:
+   - `npm run qa:content`
+   - `npm run lint`
+   - `npm run typecheck`
+   - `npm run build`
+3. Open PR to `main`
+4. Confirm GitHub CI passes
+5. Merge and verify Vercel production deploy
+
 ## Update content
 
 - Blog posts: `content/blog/*.md`
@@ -163,6 +177,8 @@ Setup:
 2. Update `/hire` and `/hire/<track>` pages with approved role-specific outcomes.
 3. Add approved reference quotes in `lib/references.ts`.
 4. Keep artifacts in `public/artifacts/*` aligned to your latest operating practices.
+
+See `CONTRIBUTING.md` for full PR and validation guidelines.
 
 ## Suggested next edits
 

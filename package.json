@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "qa:content": "node scripts/check-content-quality.mjs",
+    "ci": "npm run qa:content && npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
