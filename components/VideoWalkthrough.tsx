@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import Link from "next/link";
 
 type VideoWalkthroughProps = {
@@ -5,6 +7,8 @@ type VideoWalkthroughProps = {
   description?: string;
   ctaLabel?: string;
 };
+
+const LOCAL_VIDEO_PUBLIC_PATH = "/walkthrough/mike-yerke-walkthrough.webm";
 
 function toEmbedUrl(rawUrl: string): string {
   if (rawUrl.includes("youtube.com/embed") || rawUrl.includes("player.vimeo.com/video")) {
@@ -33,6 +37,11 @@ function toEmbedUrl(rawUrl: string): string {
   return rawUrl;
 }
 
+function hasLocalWalkthroughVideo(): boolean {
+  const localPath = path.join(process.cwd(), "public", LOCAL_VIDEO_PUBLIC_PATH.replace(/^\//, ""));
+  return fs.existsSync(localPath);
+}
+
 export function VideoWalkthrough({
   title = "2-Minute Walkthrough",
   description = "A concise walkthrough helps recruiters quickly evaluate systems thinking, technical depth, and communication style.",
@@ -40,9 +49,29 @@ export function VideoWalkthrough({
 }: VideoWalkthroughProps) {
   const rawVideoUrl = process.env.NEXT_PUBLIC_WALKTHROUGH_VIDEO_URL;
   const embedUrl = rawVideoUrl ? toEmbedUrl(rawVideoUrl) : "";
+  const showLocalVideo = !embedUrl && hasLocalWalkthroughVideo();
 
-  if (!embedUrl) {
-    return null;
+  if (!embedUrl && !showLocalVideo) {
+    return (
+      <section className="video-walkthrough">
+        <div className="section-header">
+          <h2>{title}</h2>
+        </div>
+        <p className="page-intro">{description}</p>
+        <article className="list-item">
+          <p className="meta">Walkthrough is configured to publish from either:</p>
+          <ul>
+            <li>`NEXT_PUBLIC_WALKTHROUGH_VIDEO_URL` (YouTube or Vimeo)</li>
+            <li>`/public/walkthrough/mike-yerke-walkthrough.webm` (self-hosted)</li>
+          </ul>
+        </article>
+        <div className="link-row">
+          <Link className="btn btn-secondary" href="/hire">
+            {ctaLabel}
+          </Link>
+        </div>
+      </section>
+    );
   }
 
   return (
@@ -53,13 +82,20 @@ export function VideoWalkthrough({
       <p className="page-intro">{description}</p>
 
       <div className="video-frame-wrap">
-        <iframe
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="video-frame"
-          src={embedUrl}
-          title="Mike Yerke walkthrough video"
-        />
+        {embedUrl ? (
+          <iframe
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="video-frame"
+            src={embedUrl}
+            title="Mike Yerke walkthrough video"
+          />
+        ) : (
+          <video className="video-native" controls preload="metadata">
+            <source src={LOCAL_VIDEO_PUBLIC_PATH} type="video/webm" />
+            Your browser does not support embedded video playback.
+          </video>
+        )}
       </div>
 
       <div className="link-row">

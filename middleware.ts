@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const AUTH_REALM = "Private Portfolio";
-const SECURITY_HEADERS: Record<string, string> = {
+const BASE_SECURITY_HEADERS: Record<string, string> = {
   "X-Content-Type-Options": "nosniff",
   "X-Frame-Options": "DENY",
   "Referrer-Policy": "strict-origin-when-cross-origin",
@@ -11,10 +11,53 @@ const SECURITY_HEADERS: Record<string, string> = {
   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload"
 };
 
-function applySecurityHeaders(response: NextResponse) {
-  for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
+function buildContentSecurityPolicy(pathname: string): string {
+  const isAdminRoute = pathname.startsWith("/admin");
+  const isDevelopment = process.env.NODE_ENV !== "production";
+  const scriptSource = isDevelopment
+    ? "'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://challenges.cloudflare.com"
+    : "'self' 'unsafe-inline' https://va.vercel-scripts.com https://challenges.cloudflare.com";
+
+  if (isAdminRoute) {
+    return [
+      "default-src 'self'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "frame-ancestors 'none'",
+      "object-src 'none'",
+      `script-src ${isDevelopment ? "'self' 'unsafe-eval'" : "'self'"}`,
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob:",
+      "font-src 'self' data:",
+      "connect-src 'self' https://api.github.com https://github.com",
+      "frame-src 'none'",
+      "worker-src 'self' blob:",
+      "upgrade-insecure-requests"
+    ].join("; ");
+  }
+
+  return [
+    "default-src 'self'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'none'",
+    "object-src 'none'",
+    `script-src ${scriptSource}`,
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: blob: https:",
+    "font-src 'self' data:",
+    "connect-src 'self' https://va.vercel-scripts.com https://vitals.vercel-insights.com https://challenges.cloudflare.com https://api.resend.com",
+    "frame-src 'self' https://calendly.com https://www.youtube.com https://player.vimeo.com https://challenges.cloudflare.com",
+    "worker-src 'self' blob:",
+    "upgrade-insecure-requests"
+  ].join("; ");
+}
+
+function applySecurityHeaders(response: NextResponse, pathname: string) {
+  for (const [name, value] of Object.entries(BASE_SECURITY_HEADERS)) {
     response.headers.set(name, value);
   }
+  response.headers.set("Content-Security-Policy", buildContentSecurityPolicy(pathname));
 }
 
 async function sha256(value: string): Promise<Uint8Array> {
@@ -42,18 +85,18 @@ async function secureCompare(left: string, right: string): Promise<boolean> {
   return timingSafeEqual(leftHash, rightHash);
 }
 
-function unauthorizedResponse() {
+function unauthorizedResponse(pathname: string) {
   const response = new NextResponse("Authentication required", { status: 401 });
   response.headers.set("WWW-Authenticate", `Basic realm="${AUTH_REALM}", charset="UTF-8"`);
   response.headers.set("Cache-Control", "private, no-store, no-cache, must-revalidate");
-  applySecurityHeaders(response);
+  applySecurityHeaders(response, pathname);
   return response;
 }
 
-function misconfiguredResponse() {
+function misconfiguredResponse(pathname: string) {
   const response = new NextResponse("Site protection is not configured correctly.", { status: 503 });
   response.headers.set("Cache-Control", "private, no-store, no-cache, must-revalidate");
-  applySecurityHeaders(response);
+  applySecurityHeaders(response, pathname);
   return response;
 }
 
@@ -69,7 +112,7 @@ export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   if (pathname.startsWith("/api/cms/")) {
     const openResponse = NextResponse.next();
-    applySecurityHeaders(openResponse);
+    applySecurityHeaders(openResponse, pathname);
     return openResponse;
   }
 
@@ -78,17 +121,17 @@ export async function middleware(request: NextRequest) {
 
   if (!expectedUsername || !expectedPassword) {
     if (process.env.NODE_ENV === "production") {
-      return misconfiguredResponse();
+      return misconfiguredResponse(pathname);
     }
 
     const devResponse = NextResponse.next();
-    applySecurityHeaders(devResponse);
+    applySecurityHeaders(devResponse, pathname);
     return devResponse;
   }
 
   const authorization = request.headers.get("authorization");
   if (!authorization || !authorization.startsWith("Basic ")) {
-    return unauthorizedResponse();
+    return unauthorizedResponse(pathname);
   }
 
   const encodedCredentials = authorization.slice("Basic ".length).trim();
@@ -97,12 +140,12 @@ export async function middleware(request: NextRequest) {
   try {
     decodedCredentials = atob(encodedCredentials);
   } catch {
-    return unauthorizedResponse();
+    return unauthorizedResponse(pathname);
   }
 
   const separatorIndex = decodedCredentials.indexOf(":");
   if (separatorIndex === -1) {
-    return unauthorizedResponse();
+    return unauthorizedResponse(pathname);
   }
 
   const providedUsername = decodedCredentials.slice(0, separatorIndex);
@@ -112,11 +155,11 @@ export async function middleware(request: NextRequest) {
   const passwordMatches = await secureCompare(providedPassword, expectedPassword);
 
   if (!usernameMatches || !passwordMatches) {
-    return unauthorizedResponse();
+    return unauthorizedResponse(pathname);
   }
 
   const response = NextResponse.next();
-  applySecurityHeaders(response);
+  applySecurityHeaders(response, pathname);
   if (!isStaticAssetPath(pathname)) {
     response.headers.set("Cache-Control", "private, no-store, no-cache, must-revalidate");
   }

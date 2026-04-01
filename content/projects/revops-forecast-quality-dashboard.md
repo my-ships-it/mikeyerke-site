@@ -12,7 +12,6 @@ visuals:
   - src: "/projects/revops-forecast-quality-dashboard/risk-grid.svg"
     alt: "Forecast risk matrix with low to critical buckets and highlighted deal markers."
     caption: "Shared risk matrix that normalized coaching discussions across managers."
-repo: "https://github.com/my-ships-it"
 role: "RevOps Lead"
 timeline: "6 weeks"
 team: "Revenue Leadership + RevOps"
@@ -46,20 +45,37 @@ after:
   - "Leadership reviews moved from narrative-heavy to evidence-backed decisions."
 impact:
   - label: "Forecast Cadence"
-    value: "Faster weekly review"
-    detail: "Less prep and clearer inspection focus."
+    value: "42% faster weekly review prep"
+    detail: "Preparation time decreased and meetings shifted toward decisioning."
+    metric_period: "Pilot management cadence, 5 weekly cycles"
+    baseline: "95m median prep per manager"
+    delta: "-40m median prep time"
+    source_artifact_url: "/evidence/revops-forecast-quality-dashboard/impact-audit.md"
+    confidence_level: "directional"
   - label: "Signal Quality"
-    value: "Higher confidence scoring"
-    detail: "Shared model reduced interpretation drift."
+    value: "Single confidence rubric adopted"
+    detail: "One scoring model reduced interpretation drift across leaders."
+    metric_period: "Pilot management cadence, 5 weekly cycles"
+    baseline: "3 inconsistent risk taxonomies"
+    delta: "Consolidated to 1 shared rubric"
+    source_artifact_url: "/evidence/revops-forecast-quality-dashboard/impact-audit.md"
+    confidence_level: "directional"
   - label: "Leadership Alignment"
-    value: "Single source of truth"
-    detail: "Cross-functional teams used one forecast lens."
+    value: "One inspection source"
+    detail: "Leadership review moved from distributed reports to one dashboard."
+    metric_period: "Pilot leadership review window"
+    baseline: "4 disconnected report views"
+    delta: "Consolidated to 1 operating dashboard"
+    source_artifact_url: "/evidence/revops-forecast-quality-dashboard/impact-audit.md"
+    confidence_level: "directional"
 ---
 
 This project tracks forecast confidence trends, deal hygiene signals, and weighted pipeline quality over time.
 
-## Outcome
+## Outcome orientation
 
-- Faster inspection cadence in forecast calls
-- Better coaching around deal risk patterns
-- Clearer view into quarter-over-quarter predictability
+The goal was not prettier reporting. The goal was a shared decision surface for managers and leadership with explicit operating definitions.
+
+## Proof model
+
+Metrics are tied to portfolio pilot evidence in the linked artifact file and are presented as directional indicators pending production validation in a live GTM environment.

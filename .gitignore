@@ -6,6 +6,9 @@
 # next.js
 /.next/
 /out/
+/playwright-report/
+/test-results/
+/public/admin/decap-cms.js
 
 # production
 /build

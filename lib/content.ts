@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { marked } from "marked";
+import sanitizeHtml from "sanitize-html";
 
 export type ContentType = "blog" | "projects";
 
@@ -9,6 +10,11 @@ export type ImpactMetric = {
   label: string;
   value: string;
   detail?: string;
+  metricPeriod?: string;
+  baseline?: string;
+  delta?: string;
+  sourceArtifactUrl?: string;
+  confidenceLevel?: "high" | "medium" | "directional";
 };
 
 export type ProjectVisual = {
@@ -108,15 +114,48 @@ function toImpactMetrics(value: unknown): ImpactMetric[] {
       return accumulator;
     }
 
-    const metric = item as { label?: unknown; value?: unknown; detail?: unknown };
+    const metric = item as {
+      label?: unknown;
+      value?: unknown;
+      detail?: unknown;
+      metric_period?: unknown;
+      baseline?: unknown;
+      delta?: unknown;
+      source_artifact_url?: unknown;
+      confidence_level?: unknown;
+      metricPeriod?: unknown;
+      sourceArtifactUrl?: unknown;
+      confidenceLevel?: unknown;
+    };
     if (!metric.label || !metric.value) {
       return accumulator;
     }
 
+    const confidenceLevel =
+      metric.confidence_level ?? metric.confidenceLevel
+        ? String(metric.confidence_level ?? metric.confidenceLevel).toLowerCase()
+        : undefined;
+
     accumulator.push({
       label: String(metric.label),
       value: String(metric.value),
-      detail: metric.detail ? String(metric.detail) : undefined
+      detail: metric.detail ? String(metric.detail) : undefined,
+      metricPeriod: metric.metric_period
+        ? String(metric.metric_period)
+        : metric.metricPeriod
+        ? String(metric.metricPeriod)
+        : undefined,
+      baseline: metric.baseline ? String(metric.baseline) : undefined,
+      delta: metric.delta ? String(metric.delta) : undefined,
+      sourceArtifactUrl: metric.source_artifact_url
+        ? String(metric.source_artifact_url)
+        : metric.sourceArtifactUrl
+        ? String(metric.sourceArtifactUrl)
+        : undefined,
+      confidenceLevel:
+        confidenceLevel === "high" || confidenceLevel === "medium" || confidenceLevel === "directional"
+          ? confidenceLevel
+          : undefined
     });
 
     return accumulator;
@@ -179,5 +218,54 @@ export function getContentBySlug(type: ContentType, slug: string): ContentItem |
 }
 
 export function markdownToHtml(markdown: string): string {
-  return marked.parse(markdown, { async: false }) as string;
+  const parsedHtml = marked.parse(markdown, { async: false }) as string;
+  return sanitizeHtml(parsedHtml, {
+    allowedTags: [
+      ...sanitizeHtml.defaults.allowedTags,
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+      "img",
+      "figure",
+      "figcaption",
+      "table",
+      "thead",
+      "tbody",
+      "tr",
+      "th",
+      "td",
+      "pre",
+      "code",
+      "blockquote",
+      "hr"
+    ],
+    allowedAttributes: {
+      ...sanitizeHtml.defaults.allowedAttributes,
+      a: ["href", "name", "target", "rel"],
+      img: ["src", "alt", "title", "width", "height", "loading", "decoding"],
+      code: ["class"],
+      "*": ["id"]
+    },
+    allowedSchemes: ["http", "https", "mailto"],
+    allowedSchemesAppliedToAttributes: ["href", "src"],
+    transformTags: {
+      a: (tagName: string, attribs: Record<string, string>) => {
+        const href = attribs.href ?? "";
+        const isInternal = href.startsWith("/") || href.startsWith("#");
+        const isMailto = href.startsWith("mailto:");
+
+        return {
+          tagName,
+          attribs: {
+            ...attribs,
+            rel: isInternal || isMailto ? "noopener" : "noopener noreferrer",
+            target: isInternal || isMailto ? "_self" : "_blank"
+          }
+        };
+      }
+    }
+  });
 }

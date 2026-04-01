@@ -1,21 +1,33 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
-export function ContactForm() {
+type ContactFormProps = {
+  turnstileSiteKey?: string;
+};
+
+declare global {
+  interface Window {
+    turnstile?: {
+      reset: () => void;
+    };
+  }
+}
+
+export function ContactForm({ turnstileSiteKey }: ContactFormProps) {
   const [state, setState] = useState<SubmitState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [startedAt] = useState(() => Date.now());
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
     role: "",
     message: "",
-    website: "",
-    turnstileToken: ""
+    website: ""
   });
 
   const canSubmit = useMemo(
@@ -36,11 +48,21 @@ export function ContactForm() {
     setErrorMessage("");
 
     try {
+      const tokenField = formRef.current
+        ? formRef.current.querySelector<HTMLInputElement>("[name='cf-turnstile-response']")
+        : null;
+      const turnstileToken = tokenField?.value?.trim() ?? "";
+
+      if (turnstileSiteKey && !turnstileToken) {
+        throw new Error("Please complete the captcha challenge before sending.");
+      }
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
+          turnstileToken,
           startedAt: String(startedAt)
         })
       });
@@ -57,9 +79,9 @@ export function ContactForm() {
         company: "",
         role: "",
         message: "",
-        website: "",
-        turnstileToken: ""
+        website: ""
       });
+      window.turnstile?.reset();
     } catch (error) {
       setState("error");
       setErrorMessage(error instanceof Error ? error.message : "Something went wrong.");
@@ -67,7 +89,7 @@ export function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={onSubmit}>
+    <form className="contact-form" onSubmit={onSubmit} ref={formRef}>
       <label className="field">
         Name
         <input
@@ -133,6 +155,18 @@ export function ContactForm() {
           value={formData.website}
         />
       </label>
+
+      {turnstileSiteKey ? (
+        <label className="field">
+          Security Check
+          <div
+            className="cf-turnstile"
+            data-response-field-name="cf-turnstile-response"
+            data-sitekey={turnstileSiteKey}
+            data-theme="light"
+          />
+        </label>
+      ) : null}
 
       <button className="btn btn-primary" disabled={!canSubmit} type="submit">
         {state === "submitting" ? "Sending..." : "Send Message"}

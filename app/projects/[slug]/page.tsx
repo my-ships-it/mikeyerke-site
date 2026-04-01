@@ -58,6 +58,7 @@ export default async function ProjectPage({ params }: Props) {
     { title: "Adoption Strategy", items: project.adoption }
   ];
   const hasLeadershipLayer = leadershipSections.some((section) => section.items.length > 0);
+  const hasExternalProjectLinks = Boolean(project.repo || project.demo);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
@@ -102,18 +103,20 @@ export default async function ProjectPage({ params }: Props) {
           ) : null}
         </div>
 
-        <div className="link-row">
-          {project.repo ? (
-            <Link className="btn btn-secondary" href={project.repo} target="_blank" rel="noreferrer">
-              GitHub Repo
-            </Link>
-          ) : null}
-          {project.demo ? (
-            <Link className="btn btn-primary" href={project.demo} target="_blank" rel="noreferrer">
-              Live Demo
-            </Link>
-          ) : null}
-        </div>
+        {hasExternalProjectLinks ? (
+          <div className="link-row">
+            {project.repo ? (
+              <Link className="btn btn-secondary" href={project.repo} target="_blank" rel="noreferrer">
+                GitHub Repo
+              </Link>
+            ) : null}
+            {project.demo ? (
+              <Link className="btn btn-primary" href={project.demo} target="_blank" rel="noreferrer">
+                Live Demo
+              </Link>
+            ) : null}
+          </div>
+        ) : null}
       </header>
 
       {project.visuals.length > 0 ? (
@@ -142,6 +145,19 @@ export default async function ProjectPage({ params }: Props) {
               <p className="meta">{metric.label}</p>
               <h2>{metric.value}</h2>
               {metric.detail ? <p>{metric.detail}</p> : null}
+              {metric.baseline ? <p className="meta">Baseline: {metric.baseline}</p> : null}
+              {metric.delta ? <p className="meta">Delta: {metric.delta}</p> : null}
+              {metric.metricPeriod ? <p className="meta">Period: {metric.metricPeriod}</p> : null}
+              {metric.confidenceLevel ? (
+                <p className="meta">Confidence: {metric.confidenceLevel}</p>
+              ) : null}
+              {metric.sourceArtifactUrl ? (
+                <p className="meta">
+                  <a href={metric.sourceArtifactUrl} rel="noreferrer" target="_blank">
+                    Evidence source
+                  </a>
+                </p>
+              ) : null}
             </article>
           ))}
         </section>

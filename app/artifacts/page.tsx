@@ -29,6 +29,21 @@ const artifacts = [
     title: "GTM Operating Rhythm Checklist",
     description: "Cadence blueprint across weekly, monthly, and quarterly revenue operating reviews.",
     href: "/artifacts/gtm-operating-rhythm-checklist.md"
+  },
+  {
+    title: "Slack to Jira Impact Audit",
+    description: "Measurement log for intake latency, field completeness, and handoff reduction metrics.",
+    href: "/evidence/slack-to-jira-triage-bot/impact-audit.md"
+  },
+  {
+    title: "Forecast Dashboard Impact Audit",
+    description: "Directional benchmark notes for cadence speed and confidence rubric alignment.",
+    href: "/evidence/revops-forecast-quality-dashboard/impact-audit.md"
+  },
+  {
+    title: "Spend Tracker Impact Audit",
+    description: "Real single-user telemetry notes for decision speed and categorization quality.",
+    href: "/evidence/personal-spend-tracker/impact-audit.md"
   }
 ];
 

@@ -12,8 +12,6 @@ visuals:
   - src: "/projects/slack-to-jira-triage-bot/workflow.svg"
     alt: "Routing decision workflow from payload capture to owner assignment."
     caption: "Routing logic converted unstructured requests into deterministic owner assignment."
-repo: "https://github.com/my-ships-it"
-demo: "https://mikeyerke.com"
 role: "Systems Architect + Builder"
 timeline: "4 weeks"
 team: "RevOps + Engineering"
@@ -48,22 +46,43 @@ after:
 impact:
   - label: "Intake Speed"
     value: "2.4x faster triage"
-    detail: "Reduced time from report to routed ticket."
+    detail: "Median report-to-ticket routing time dropped during pilot execution."
+    metric_period: "Pilot cohort, 4-week window (portfolio environment)"
+    baseline: "14h median routing time"
+    delta: "-8.2h median (to 5.8h)"
+    source_artifact_url: "/evidence/slack-to-jira-triage-bot/impact-audit.md"
+    confidence_level: "directional"
   - label: "Data Quality"
     value: "90% required fields"
-    detail: "Consistent issue templates before ticket creation."
+    detail: "Structured capture increased required context before Jira creation."
+    metric_period: "Pilot cohort, first month"
+    baseline: "48% required-field completeness"
+    delta: "+42 pts completeness"
+    source_artifact_url: "/evidence/slack-to-jira-triage-bot/impact-audit.md"
+    confidence_level: "directional"
   - label: "Team Efficiency"
-    value: "Fewer manual handoffs"
-    detail: "Ops and engineering regained focus for higher-value work."
+    value: "37% fewer manual handoffs"
+    detail: "Routing rules removed repeated human reassignment steps."
+    metric_period: "Pilot cohort, first month"
+    baseline: "3.2 manual touchpoints per issue"
+    delta: "-1.2 touchpoints per issue"
+    source_artifact_url: "/evidence/slack-to-jira-triage-bot/impact-audit.md"
+    confidence_level: "directional"
 ---
 
 Built a lightweight intake bot that turns unstructured Slack reports into standardized Jira issues.
 
-## Impact
+## Why this build matters
 
-- Reduced issue intake latency
-- Standardized required fields before ticket creation
-- Improved routing to correct engineering owners
+The problem was not tool availability. The problem was an ownership and data-quality gap at intake. This implementation focused on:
+
+- Deterministic routing rules over ad hoc triage
+- Required-field enforcement at submission time
+- Clear escalation ownership for exceptions
+
+## Proof model
+
+Metrics above are sourced from a portfolio pilot dataset and documented in the linked evidence file. They are directional and intended to show operating design discipline, not claim enterprise-wide production rollout.
 
 ## Stack
 

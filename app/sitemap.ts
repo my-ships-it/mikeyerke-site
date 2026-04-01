@@ -3,6 +3,11 @@ import { getAllContent } from "@/lib/content";
 import { hireTracks } from "@/lib/hireTracks";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const isProtected = Boolean(process.env.SITE_USERNAME && process.env.SITE_PASSWORD);
+  if (isProtected) {
+    return [];
+  }
+
   const base = "https://www.mikeyerke.com";
   const staticRoutes = ["", "/about", "/projects", "/blog", "/resume", "/contact", "/hire", "/artifacts", "/trust"].map((route) => ({
     url: `${base}${route}`,

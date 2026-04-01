@@ -5,6 +5,11 @@ type OutcomeItem = {
   value: string;
   label: string;
   detail?: string;
+  baseline?: string;
+  delta?: string;
+  metricPeriod?: string;
+  confidenceLevel?: "high" | "medium" | "directional";
+  sourceArtifactUrl?: string;
   projectTitle: string;
   projectSlug: string;
 };
@@ -24,6 +29,11 @@ export function VerifiedOutcomesBoard({
       value: metric.value,
       label: metric.label,
       detail: metric.detail,
+      baseline: metric.baseline,
+      delta: metric.delta,
+      metricPeriod: metric.metricPeriod,
+      confidenceLevel: metric.confidenceLevel,
+      sourceArtifactUrl: metric.sourceArtifactUrl,
       projectTitle: project.title,
       projectSlug: project.slug
     }))
@@ -48,10 +58,23 @@ export function VerifiedOutcomesBoard({
             <p className="meta">{outcome.label}</p>
             <h3>{outcome.value}</h3>
             {outcome.detail ? <p>{outcome.detail}</p> : null}
+            {outcome.baseline ? <p className="meta">Baseline: {outcome.baseline}</p> : null}
+            {outcome.delta ? <p className="meta">Delta: {outcome.delta}</p> : null}
+            {outcome.metricPeriod ? <p className="meta">Period: {outcome.metricPeriod}</p> : null}
+            {outcome.confidenceLevel ? (
+              <p className="meta">Confidence: {outcome.confidenceLevel}</p>
+            ) : null}
             <p className="meta">
               Source:{" "}
               <Link href={`/projects/${outcome.projectSlug}`}>{outcome.projectTitle}</Link>
             </p>
+            {outcome.sourceArtifactUrl ? (
+              <p className="meta">
+                <Link href={outcome.sourceArtifactUrl} rel="noreferrer" target="_blank">
+                  Open evidence file
+                </Link>
+              </p>
+            ) : null}
           </article>
         ))}
       </div>

@@ -12,7 +12,6 @@ visuals:
   - src: "/projects/personal-spend-tracker/monthly-trend.svg"
     alt: "Category heatmap and monthly alert queue for spending behavior shifts."
     caption: "Category-level alerting view for early detection of spending pattern changes."
-repo: "https://github.com/my-ships-it"
 role: "Product Builder"
 timeline: "2 weeks"
 team: "Solo"
@@ -46,14 +45,24 @@ after:
 impact:
   - label: "Decision Speed"
     value: "Same-day visibility"
-    detail: "Faster budget decisions without manual rollups."
+    detail: "Monthly pacing decisions no longer waited for manual spreadsheet rollups."
+    metric_period: "Personal usage, 3-month tracking window"
+    baseline: "1-2 day lag to assemble spend view"
+    delta: "Moved to same-day visibility"
+    source_artifact_url: "/evidence/personal-spend-tracker/impact-audit.md"
+    confidence_level: "medium"
   - label: "Consistency"
-    value: "Standardized categories"
-    detail: "Reduced ambiguity in month-over-month comparisons."
+    value: "96% category coverage"
+    detail: "Standardized category mapping improved month-over-month comparability."
+    metric_period: "Personal usage, 3-month tracking window"
+    baseline: "~61% transactions categorized on first pass"
+    delta: "+35 pts first-pass categorization"
+    source_artifact_url: "/evidence/personal-spend-tracker/impact-audit.md"
+    confidence_level: "medium"
 ---
 
 Built a utility app to categorize transactions, monitor budget thresholds, and chart monthly spending trends.
 
 ## Why it matters
 
-Small internal tools sharpen product thinking and speed up experimentation.
+Small internal tools sharpen product judgment and operating rigor. This project demonstrates end-to-end build speed, measurement discipline, and iterative product thinking in a low-risk sandbox.

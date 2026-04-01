@@ -3,6 +3,7 @@ import Link from "next/link";
 import { VideoWalkthrough } from "@/components/VideoWalkthrough";
 import { VerifiedOutcomesBoard } from "@/components/VerifiedOutcomesBoard";
 import { SocialProofPanel } from "@/components/SocialProofPanel";
+import { RecruiterJourney } from "@/components/RecruiterJourney";
 import { hireTracks } from "@/lib/hireTracks";
 
 export const metadata: Metadata = {
@@ -59,6 +60,18 @@ export default function HirePage() {
         </div>
       </article>
 
+      <VideoWalkthrough
+        title="Walkthrough For Hiring Panels"
+        description="A 2-minute walkthrough lets hiring teams quickly validate systems thinking, communication style, and execution depth."
+        ctaLabel="Open Full Recruiter Track"
+      />
+
+      <RecruiterJourney
+        intro="Fastest evaluator path: resume, one case study, then a focused intro call."
+        placement="hire"
+        title="2-Minute Evaluator Path"
+      />
+
       <VerifiedOutcomesBoard compact title="Outcome Evidence" />
 
       <section>
@@ -101,12 +114,6 @@ export default function HirePage() {
           </article>
         </div>
       </section>
-
-      <VideoWalkthrough
-        title="Walkthrough For Hiring Panels"
-        description="Add a 2-minute walkthrough video to accelerate trust and communicate strategic clarity fast."
-        ctaLabel="Open Full Recruiter Track"
-      />
 
       <SocialProofPanel />
 

@@ -37,6 +37,7 @@ Use a branch + PR flow for safer releases:
    - `npm run lint`
    - `npm run typecheck`
    - `npm run build`
+   - `npm run test:smoke`
 3. Open PR to `main`
 4. Confirm GitHub CI passes
 5. Merge and verify Vercel production deploy
@@ -82,6 +83,11 @@ impact:
   - label: "Intake Speed"
     value: "2.4x faster"
     detail: "Reduced report-to-ticket time"
+    metric_period: "Pilot cohort, 4 weeks"
+    baseline: "14h median triage time"
+    delta: "-8.2h median"
+    source_artifact_url: "/evidence/slack-to-jira-triage-bot/impact-audit.md"
+    confidence_level: "directional" # high | medium | directional
 coverImage: "/projects/my-project/cover.svg"
 visuals:
   - src: "/projects/my-project/cover.svg"
@@ -113,12 +119,28 @@ Environment variables:
 
 - `NEXT_PUBLIC_CALENDLY_URL` (example: `https://calendly.com/your-handle/30min`)
 - `NEXT_PUBLIC_WALKTHROUGH_VIDEO_URL` (optional, YouTube/Vimeo link for walkthrough embed)
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY` (optional, for Cloudflare Turnstile widget)
 - `CONTACT_ALLOWED_ORIGINS` (comma-separated, optional)
+- `CONTACT_TURNSTILE_SECRET` (required in production when Turnstile is enabled)
+- `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (required in production for durable rate limits)
 - Delivery target (at least one):
   - `CONTACT_WEBHOOK_URL`
   - `RESEND_API_KEY` + `CONTACT_FROM_EMAIL` + `CONTACT_TO_EMAIL`
-- Optional bot challenge:
-  - `CONTACT_TURNSTILE_SECRET`
+
+### Smoke tests
+
+Playwright smoke coverage validates core hiring flows:
+
+- homepage renders leadership positioning
+- projects filter interaction
+- hire brief structure
+- contact form ready-to-submit behavior
+
+Run with:
+
+```bash
+npm run test:smoke
+```
 
 ## Password Protect The Entire Site
 
@@ -133,6 +155,7 @@ This repo includes middleware-level HTTP Basic Auth. If credentials are not set 
 5. Redeploy.
 
 After deploy, all pages are behind a username/password prompt.
+When credentials are set, `robots.txt` disallows indexing and `sitemap.xml` returns no public URLs.
 
 ## CMS Editing (Optional)
 
@@ -174,9 +197,11 @@ Setup:
 ## Director-Level Content Workflow
 
 1. Add only verified metrics to project frontmatter `impact` blocks.
-2. Update `/hire` and `/hire/<track>` pages with approved role-specific outcomes.
-3. Add approved reference quotes in `lib/references.ts`.
-4. Keep artifacts in `public/artifacts/*` aligned to your latest operating practices.
+2. Include `metric_period`, `baseline`, `delta`, `source_artifact_url`, and `confidence_level` for each impact metric.
+3. Keep source evidence files in `public/evidence/*` and ensure links resolve.
+4. Update `/hire` and `/hire/<track>` pages with approved role-specific outcomes.
+5. Add approved reference quotes in `lib/references.ts`.
+6. Keep artifacts in `public/artifacts/*` aligned to your latest operating practices.
 
 See `CONTRIBUTING.md` for full PR and validation guidelines.
 

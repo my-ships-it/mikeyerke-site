@@ -1,14 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { checkContactRateLimit } from "@/lib/rateLimit";
 
-const RATE_WINDOW_MS = 15 * 60 * 1000;
-const RATE_LIMIT_PER_WINDOW = 6;
 const MIN_FORM_FILL_MS = 2500;
 const MAX_MESSAGE_LENGTH = 4000;
-
-type RateEntry = {
-  count: number;
-  resetAt: number;
-};
 
 type ContactPayload = {
   name?: unknown;
@@ -20,15 +14,6 @@ type ContactPayload = {
   startedAt?: unknown;
   turnstileToken?: unknown;
 };
-
-declare global {
-  var __contactRateStore: Map<string, RateEntry> | undefined;
-}
-
-const rateStore = globalThis.__contactRateStore ?? new Map<string, RateEntry>();
-if (!globalThis.__contactRateStore) {
-  globalThis.__contactRateStore = rateStore;
-}
 
 function json(data: Record<string, unknown>, status = 200): NextResponse {
   const response = NextResponse.json(data, { status });
@@ -84,30 +69,7 @@ function getClientIp(request: NextRequest): string {
   return realIp ? realIp.trim() : "unknown";
 }
 
-function isRateLimited(clientIp: string): boolean {
-  const now = Date.now();
-  const entry = rateStore.get(clientIp);
-
-  if (!entry || entry.resetAt <= now) {
-    rateStore.set(clientIp, { count: 1, resetAt: now + RATE_WINDOW_MS });
-    return false;
-  }
-
-  if (entry.count >= RATE_LIMIT_PER_WINDOW) {
-    return true;
-  }
-
-  entry.count += 1;
-  rateStore.set(clientIp, entry);
-  return false;
-}
-
-async function verifyTurnstileToken(token: string, clientIp: string): Promise<boolean> {
-  const secret = process.env.CONTACT_TURNSTILE_SECRET;
-  if (!secret || !token) {
-    return true;
-  }
-
+async function verifyTurnstileToken(token: string, clientIp: string, secret: string): Promise<boolean> {
   const body = new URLSearchParams();
   body.set("secret", secret);
   body.set("response", token);
@@ -115,15 +77,24 @@ async function verifyTurnstileToken(token: string, clientIp: string): Promise<bo
 
   const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
     method: "POST",
-    body
+    body,
+    signal: AbortSignal.timeout(8000)
   });
 
   if (!response.ok) {
     return false;
   }
 
-  const payload = (await response.json()) as { success?: boolean };
-  return payload.success === true;
+  const payload = (await response.json()) as { success?: boolean; hostname?: string };
+  if (payload.success !== true) {
+    return false;
+  }
+
+  if (!payload.hostname) {
+    return true;
+  }
+
+  return payload.hostname === "mikeyerke.com" || payload.hostname === "www.mikeyerke.com";
 }
 
 async function deliverViaWebhook(payload: {
@@ -208,8 +179,19 @@ export async function POST(request: NextRequest) {
   }
 
   const clientIp = getClientIp(request);
-  if (isRateLimited(clientIp)) {
-    return json({ error: "Too many requests. Please try again soon." }, 429);
+  const rateCheck = await checkContactRateLimit(clientIp);
+
+  if (!rateCheck.success) {
+    if (rateCheck.reason === "misconfigured") {
+      return json({ error: "Contact rate limiting is not configured." }, 503);
+    }
+
+    const retryAfterSeconds = rateCheck.resetAt
+      ? Math.max(1, Math.ceil((rateCheck.resetAt - Date.now()) / 1000))
+      : 60;
+    const response = json({ error: "Too many requests. Please try again soon." }, 429);
+    response.headers.set("Retry-After", String(retryAfterSeconds));
+    return response;
   }
 
   let body: ContactPayload;
@@ -249,8 +231,19 @@ export async function POST(request: NextRequest) {
     return json({ error: "Message must be between 20 and 4000 characters." }, 400);
   }
 
-  if (!(await verifyTurnstileToken(turnstileToken, clientIp))) {
-    return json({ error: "Captcha verification failed." }, 400);
+  const turnstileSecret = process.env.CONTACT_TURNSTILE_SECRET;
+  if (!turnstileSecret && process.env.NODE_ENV === "production") {
+    return json({ error: "Captcha is not configured." }, 503);
+  }
+
+  if (turnstileSecret) {
+    if (!turnstileToken) {
+      return json({ error: "Captcha verification is required." }, 400);
+    }
+
+    if (!(await verifyTurnstileToken(turnstileToken, clientIp, turnstileSecret))) {
+      return json({ error: "Captcha verification failed." }, 400);
+    }
   }
 
   try {

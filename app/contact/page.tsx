@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
@@ -10,9 +11,19 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   const calendlyBaseUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/mikeyerke";
   const calendlyEmbedUrl = `${calendlyBaseUrl}?hide_event_type_details=1&hide_gdpr_banner=1`;
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   return (
     <section>
+      {turnstileSiteKey ? (
+        <Script
+          async
+          defer
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          strategy="afterInteractive"
+        />
+      ) : null}
+
       <h1>Contact</h1>
       <p className="page-intro">
         For leadership opportunities, consulting conversations, or collaboration on GTM systems, reach out here.
@@ -38,7 +49,7 @@ export default function ContactPage() {
         <article className="list-item">
           <h2>Send A Detailed Note</h2>
           <p>Use this form when you want to share role context, scope, or workflow challenges up front.</p>
-          <ContactForm />
+          <ContactForm turnstileSiteKey={turnstileSiteKey} />
         </article>
       </div>
 

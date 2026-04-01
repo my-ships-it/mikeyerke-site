@@ -739,6 +739,26 @@ code {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
+.journey-shell {
+  border: 1px solid #c8d8f2;
+  border-radius: 22px;
+  padding: 1.1rem;
+  background: linear-gradient(150deg, #ffffff, #edf5ff);
+}
+
+.journey-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.journey-card {
+  border: 1px solid #cfddf3;
+  border-radius: 14px;
+  background: #fbfdff;
+  padding: 0.85rem;
+}
+
 .list-item ul,
 .leadership-card ul {
   margin: 0.45rem 0 0;
@@ -768,6 +788,13 @@ code {
   width: 100%;
   min-height: 500px;
   border: 0;
+}
+
+.video-native {
+  width: 100%;
+  display: block;
+  background: #000000;
+  max-height: 680px;
 }
 
 .social-proof-panel {
@@ -935,6 +962,10 @@ code {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
   outline: none;
+}
+
+.cf-turnstile {
+  min-height: 66px;
 }
 
 .field-honeypot {
