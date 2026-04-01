@@ -1,20 +1,9 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Source_Sans_3 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
-
-const displayFont = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display"
-});
-
-const bodyFont = Source_Sans_3({
-  subsets: ["latin"],
-  variable: "--font-body"
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.mikeyerke.com"),
@@ -57,7 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${displayFont.variable} ${bodyFont.variable}`}>
+      <body>
         <a className="skip-link" href="#main-content">
           Skip to main content
         </a>
