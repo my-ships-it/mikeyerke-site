@@ -58,7 +58,7 @@ export default function HomePage() {
                 <li>Clear owner maps across the full funnel</li>
                 <li>Automation that survives real world edge cases</li>
                 <li>Actionable forecasting and pipeline diagnostics</li>
-                <li>Documentation teams can onboard from quickly</li>
+                <li>Documentation that teams can onboard from quickly</li>
               </ul>
               <Link className="inline-cta" href="/contact">
                 Start a conversation

@@ -77,10 +77,10 @@ export function GtmSimulator() {
   return (
     <section className="simulator-shell">
       <div className="section-header">
-        <h2>GTM System Simulator</h2>
+        <h2>Illustrative GTM Model</h2>
       </div>
       <p className="page-intro">
-        Adjust operating inputs to model how process quality and execution speed can influence funnel outcomes.
+        Adjust operating inputs to visualize how execution quality and process speed can influence funnel outcomes.
       </p>
 
       <div className="simulator-grid">
@@ -146,7 +146,7 @@ export function GtmSimulator() {
         </article>
 
         <article className="simulator-results">
-          <p className="meta">Scenario Comparison</p>
+          <p className="meta">Illustrative Scenario Comparison</p>
           <div className="sim-metric-grid">
             <div className="sim-metric">
               <p className="meta">Baseline Meetings</p>
@@ -175,11 +175,11 @@ export function GtmSimulator() {
           </div>
 
           <article className="sim-highlight">
-            <p className="meta">Modeled Booking Lift</p>
+            <p className="meta">Illustrative Booking Lift</p>
             <h3>${bookingLift.toLocaleString()}</h3>
             <p>
-              This is a directional model, not a guarantee. Use it to communicate why operating discipline and
-              system design matter in executive discussions.
+              This model is directional, not predictive. Use it to frame why operating discipline and system
+              design matter in executive discussions.
             </p>
           </article>
         </article>

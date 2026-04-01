@@ -39,8 +39,7 @@ export function VerifiedOutcomesBoard({
       </div>
 
       <p className="page-intro">
-        Outcomes shown below are tied to case-study artifacts. Replace or refine each metric as you finalize
-        verified numbers from your operating history.
+        Outcomes shown below are tied directly to published case-study artifacts and implementation context.
       </p>
 
       <div className="outcomes-grid">
