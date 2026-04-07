@@ -2,33 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/Reveal";
 import { ExperienceHighlights } from "@/components/ExperienceHighlights";
-import { SystemsMap } from "@/components/SystemsMap";
 import { getAllContent } from "@/lib/content";
-
-const confidenceRank: Record<string, number> = {
-  high: 3,
-  medium: 2,
-  directional: 1
-};
 
 export default function HomePage() {
   const projects = getAllContent("projects");
   const posts = getAllContent("blog").slice(0, 3);
   const featuredProjects = projects.slice(0, 3);
   const latestContentDate = [projects[0]?.date, posts[0]?.date].filter(Boolean).sort().reverse()[0];
-
-  const strongestProject = [...projects].sort((left, right) => {
-    const leftConfidence = confidenceRank[left.impact[0]?.confidenceLevel ?? ""] ?? 0;
-    const rightConfidence = confidenceRank[right.impact[0]?.confidenceLevel ?? ""] ?? 0;
-
-    if (leftConfidence !== rightConfidence) {
-      return rightConfidence - leftConfidence;
-    }
-
-    return new Date(right.date).getTime() - new Date(left.date).getTime();
-  })[0];
-
-  const proofMetrics = strongestProject?.impact.slice(0, 3) ?? [];
 
   return (
     <>
@@ -71,35 +51,25 @@ export default function HomePage() {
       <Reveal>
         <section>
           <div className="section-header">
-            <h2>Proof, not claims</h2>
-            {strongestProject ? <Link href={`/projects/${strongestProject.slug}`}>Source case study</Link> : null}
+            <h2>How To Review This Site</h2>
           </div>
-
-          {proofMetrics.length > 0 ? (
-            <div className="impact-grid">
-              {proofMetrics.map((metric) => (
-                <article className="impact-card" key={`${metric.label}-${metric.value}`}>
-                  <p className="meta">{metric.label}</p>
-                  <h3>{metric.value}</h3>
-                  {metric.detail ? <p>{metric.detail}</p> : null}
-                  {metric.baseline ? <p className="meta">Baseline: {metric.baseline}</p> : null}
-                  {metric.delta ? <p className="meta">Delta: {metric.delta}</p> : null}
-                  {metric.metricPeriod ? <p className="meta">Period: {metric.metricPeriod}</p> : null}
-                  {metric.sourceArtifactUrl ? (
-                    <p className="meta">
-                      <a href={metric.sourceArtifactUrl} target="_blank" rel="noreferrer">
-                        Evidence file
-                      </a>
-                    </p>
-                  ) : null}
-                </article>
-              ))}
-            </div>
-          ) : (
-            <article className="list-item">
-              <h3>Evidence is being prepared.</h3>
+          <div className="impact-grid">
+            <article className="impact-card">
+              <p className="meta">Step 1</p>
+              <h3>Review resume</h3>
+              <p>Start with scope, leadership path, and prior-role outcomes.</p>
             </article>
-          )}
+            <article className="impact-card">
+              <p className="meta">Step 2</p>
+              <h3>Review projects</h3>
+              <p>Evaluate implementation details and systems-thinking quality.</p>
+            </article>
+            <article className="impact-card">
+              <p className="meta">Step 3</p>
+              <h3>Schedule intro</h3>
+              <p>Use contact to align on role scope, mandate, and fit.</p>
+            </article>
+          </div>
         </section>
       </Reveal>
 
@@ -135,10 +105,6 @@ export default function HomePage() {
             ))}
           </div>
         </section>
-      </Reveal>
-
-      <Reveal>
-        <SystemsMap />
       </Reveal>
 
       <Reveal>

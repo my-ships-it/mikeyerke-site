@@ -82,7 +82,7 @@ export default function ContactPage() {
             <strong>Within 24 hours:</strong> I reply with fit signal and proposed next step.
           </p>
           <p>
-            <strong>Before first call:</strong> I share relevant case-study links and artifact context.
+            <strong>Before first call:</strong> I share relevant project links and role-fit context.
           </p>
           <p>
             <strong>After first call:</strong> If aligned, I send a role-specific operating hypothesis.

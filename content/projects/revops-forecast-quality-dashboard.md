@@ -45,29 +45,14 @@ after:
   - "Leadership reviews moved from narrative-heavy to evidence-backed decisions."
 impact:
   - label: "Forecast Cadence"
-    value: "42% faster weekly review prep"
-    detail: "Preparation time decreased and meetings shifted toward decisioning."
-    metric_period: "Pilot management cadence, 5 weekly cycles"
-    baseline: "95m median prep per manager"
-    delta: "-40m median prep time"
-    source_artifact_url: "/evidence/revops-forecast-quality-dashboard/impact-audit.md"
-    confidence_level: "directional"
+    value: "Faster weekly review prep"
+    detail: "Meeting prep shifted toward decision-focused inspection."
   - label: "Signal Quality"
-    value: "Single confidence rubric adopted"
-    detail: "One scoring model reduced interpretation drift across leaders."
-    metric_period: "Pilot management cadence, 5 weekly cycles"
-    baseline: "3 inconsistent risk taxonomies"
-    delta: "Consolidated to 1 shared rubric"
-    source_artifact_url: "/evidence/revops-forecast-quality-dashboard/impact-audit.md"
-    confidence_level: "directional"
+    value: "Shared risk rubric"
+    detail: "One framework reduced interpretation drift across reviewers."
   - label: "Leadership Alignment"
-    value: "One inspection source"
+    value: "Single inspection surface"
     detail: "Leadership review moved from distributed reports to one dashboard."
-    metric_period: "Pilot leadership review window"
-    baseline: "4 disconnected report views"
-    delta: "Consolidated to 1 operating dashboard"
-    source_artifact_url: "/evidence/revops-forecast-quality-dashboard/impact-audit.md"
-    confidence_level: "directional"
 ---
 
 This project tracks forecast confidence trends, deal hygiene signals, and weighted pipeline quality over time.
@@ -75,7 +60,3 @@ This project tracks forecast confidence trends, deal hygiene signals, and weight
 ## Outcome orientation
 
 The goal was not prettier reporting. The goal was a shared decision surface for managers and leadership with explicit operating definitions.
-
-## Proof model
-
-Metrics are tied to portfolio pilot evidence in the linked artifact file and are presented as directional indicators pending production validation in a live GTM environment.

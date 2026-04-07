@@ -10,10 +10,12 @@ const blockedPatterns = [
   { pattern: /Video Not Added Yet/i, reason: "Unfinished walkthrough placeholder copy." },
   { pattern: /Pending approval for public quote/i, reason: "Unpublished social proof placeholder copy." },
   { pattern: /Replace or refine each metric as you finalize/i, reason: "Draft outcomes placeholder copy." },
+  { pattern: /portfolio pilot dataset/i, reason: "Pilot-only placeholder evidence copy." },
+  { pattern: /directional indicators pending production validation/i, reason: "Directional placeholder language." },
   { pattern: /TODO/i, reason: "Unresolved TODO marker." }
 ];
-const requiredImpactFields = ["metric_period", "baseline", "delta", "source_artifact_url", "confidence_level"];
-const allowedConfidenceLevels = new Set(["high", "medium", "directional"]);
+const requiredImpactFields = ["label", "value"];
+const deprecatedImpactFields = ["source_artifact_url", "confidence_level"];
 
 const ignorePaths = new Set(["node_modules", ".next", ".git"]);
 const violations = [];
@@ -102,38 +104,15 @@ function validateProjectOutcomeEvidence() {
         }
       }
 
-      const confidenceLevel = String(metric.confidence_level ?? "").trim().toLowerCase();
-      if (confidenceLevel && !allowedConfidenceLevels.has(confidenceLevel)) {
-        violations.push({
-          file: relativePath,
-          line: 1,
-          reason: "confidence_level must be one of: high, medium, directional.",
-          snippet: `impact[${index}].confidence_level = ${confidenceLevel}`
-        });
-      }
-
-      const sourceArtifactUrl = String(metric.source_artifact_url ?? "").trim();
-      if (!sourceArtifactUrl) {
-        return;
-      }
-
-      if (sourceArtifactUrl.startsWith("/")) {
-        const artifactPath = path.join(projectRoot, "public", sourceArtifactUrl.replace(/^\//, ""));
-        if (!fs.existsSync(artifactPath)) {
+      for (const field of deprecatedImpactFields) {
+        if (typeof metric[field] === "string" && metric[field].trim().length > 0) {
           violations.push({
             file: relativePath,
             line: 1,
-            reason: "source_artifact_url points to a missing local file.",
-            snippet: `impact[${index}].source_artifact_url = ${sourceArtifactUrl}`
+            reason: `Impact metric includes deprecated field '${field}'. Remove placeholder evidence metadata.`,
+            snippet: `impact[${index}].${field}`
           });
         }
-      } else if (!/^https?:\/\//.test(sourceArtifactUrl)) {
-        violations.push({
-          file: relativePath,
-          line: 1,
-          reason: "source_artifact_url must be an absolute URL or site-relative path.",
-          snippet: `impact[${index}].source_artifact_url = ${sourceArtifactUrl}`
-        });
       }
     });
   }

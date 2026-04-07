@@ -148,16 +148,6 @@ export default async function ProjectPage({ params }: Props) {
               {metric.baseline ? <p className="meta">Baseline: {metric.baseline}</p> : null}
               {metric.delta ? <p className="meta">Delta: {metric.delta}</p> : null}
               {metric.metricPeriod ? <p className="meta">Period: {metric.metricPeriod}</p> : null}
-              {metric.confidenceLevel ? (
-                <p className="meta">Confidence: {metric.confidenceLevel}</p>
-              ) : null}
-              {metric.sourceArtifactUrl ? (
-                <p className="meta">
-                  <a href={metric.sourceArtifactUrl} rel="noreferrer" target="_blank">
-                    Evidence source
-                  </a>
-                </p>
-              ) : null}
             </article>
           ))}
         </section>

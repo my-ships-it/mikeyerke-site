@@ -46,19 +46,9 @@ impact:
   - label: "Decision Speed"
     value: "Same-day visibility"
     detail: "Monthly pacing decisions no longer waited for manual spreadsheet rollups."
-    metric_period: "Personal usage, 3-month tracking window"
-    baseline: "1-2 day lag to assemble spend view"
-    delta: "Moved to same-day visibility"
-    source_artifact_url: "/evidence/personal-spend-tracker/impact-audit.md"
-    confidence_level: "medium"
   - label: "Consistency"
-    value: "96% category coverage"
+    value: "Improved category coverage"
     detail: "Standardized category mapping improved month-over-month comparability."
-    metric_period: "Personal usage, 3-month tracking window"
-    baseline: "~61% transactions categorized on first pass"
-    delta: "+35 pts first-pass categorization"
-    source_artifact_url: "/evidence/personal-spend-tracker/impact-audit.md"
-    confidence_level: "medium"
 ---
 
 Built a utility app to categorize transactions, monitor budget thresholds, and chart monthly spending trends.

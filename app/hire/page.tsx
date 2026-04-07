@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { VideoWalkthrough } from "@/components/VideoWalkthrough";
-import { VerifiedOutcomesBoard } from "@/components/VerifiedOutcomesBoard";
-import { SocialProofPanel } from "@/components/SocialProofPanel";
 import { ExperienceHighlights } from "@/components/ExperienceHighlights";
-import { GtmSimulator } from "@/components/GtmSimulator";
 import { hireTracks } from "@/lib/hireTracks";
 
 export const metadata: Metadata = {
@@ -21,7 +17,6 @@ export default function HirePage() {
       <h1>Executive Brief</h1>
       <p className="page-intro">
         For hiring teams evaluating Director+ scope across RevOps, GTM systems, and AI-enabled operations.
-        Portfolio outcomes and pre-Confluent resume outcomes are separated below for clarity.
       </p>
 
       <article className="showcase-card">
@@ -45,7 +40,7 @@ export default function HirePage() {
           <article className="impact-card">
             <p className="meta">Business Focus</p>
             <h3>Outcome-oriented execution</h3>
-            <p>Operating decisions grounded in throughput, confidence, and efficiency metrics.</p>
+            <p>Operating decisions grounded in throughput, accountability, and execution clarity.</p>
           </article>
         </div>
         <div className="link-row">
@@ -55,21 +50,17 @@ export default function HirePage() {
           <Link className="btn btn-secondary" href="/mike-yerke-resume.pdf" target="_blank" rel="noreferrer">
             Resume PDF
           </Link>
-          <Link className="btn btn-secondary" href="/artifacts">
-            Artifacts
+          <Link className="btn btn-secondary" href="/projects">
+            Work Samples
           </Link>
         </div>
       </article>
-
-      <VerifiedOutcomesBoard compact title="Outcome Evidence" />
 
       <ExperienceHighlights
         compact
         intro="These results are from documented prior roles (UiPath and Box) in the 2024 resume snapshot."
         title="Pre-Confluent Career Outcomes"
       />
-
-      <GtmSimulator />
 
       <section>
         <div className="section-header">
@@ -91,35 +82,6 @@ export default function HirePage() {
         </div>
       </section>
 
-      <section>
-        <div className="section-header">
-          <h2>Flagship Artifacts</h2>
-          <Link href="/artifacts">Open Artifacts Hub</Link>
-        </div>
-        <div className="artifact-grid">
-          <article className="list-item">
-            <h3>Forecast Inspection Scorecard</h3>
-            <p>Criteria for confidence review and coaching escalation in forecast calls.</p>
-          </article>
-          <article className="list-item">
-            <h3>AI Operations Governance Canvas</h3>
-            <p>Control model for introducing AI into GTM workflows without operational debt.</p>
-          </article>
-          <article className="list-item">
-            <h3>90-Day RevOps Transition Plan</h3>
-            <p>Blueprint for stabilizing then scaling GTM execution architecture.</p>
-          </article>
-        </div>
-      </section>
-
-      <VideoWalkthrough
-        title="Optional 2-minute walkthrough"
-        description="If available, this gives hiring panels a fast overview of strategy, implementation depth, and communication style."
-        ctaLabel="Back To Executive Brief"
-      />
-
-      <SocialProofPanel />
-
       <section className="list-stack">
         <article className="list-item">
           <h2>What Happens Next</h2>
@@ -132,7 +94,7 @@ export default function HirePage() {
               <strong>Within 24h:</strong> Initial fit signal and suggested conversation path.
             </p>
             <p>
-              <strong>Before first call:</strong> Relevant case-study path and artifact shortlist.
+              <strong>Before first call:</strong> Relevant project links and resume context.
             </p>
             <p>
               <strong>After first call:</strong> Role-specific 90-day point of view if there is alignment.

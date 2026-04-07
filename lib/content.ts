@@ -13,8 +13,6 @@ export type ImpactMetric = {
   metricPeriod?: string;
   baseline?: string;
   delta?: string;
-  sourceArtifactUrl?: string;
-  confidenceLevel?: "high" | "medium" | "directional";
 };
 
 export type ProjectVisual = {
@@ -121,20 +119,11 @@ function toImpactMetrics(value: unknown): ImpactMetric[] {
       metric_period?: unknown;
       baseline?: unknown;
       delta?: unknown;
-      source_artifact_url?: unknown;
-      confidence_level?: unknown;
       metricPeriod?: unknown;
-      sourceArtifactUrl?: unknown;
-      confidenceLevel?: unknown;
     };
     if (!metric.label || !metric.value) {
       return accumulator;
     }
-
-    const confidenceLevel =
-      metric.confidence_level ?? metric.confidenceLevel
-        ? String(metric.confidence_level ?? metric.confidenceLevel).toLowerCase()
-        : undefined;
 
     accumulator.push({
       label: String(metric.label),
@@ -146,16 +135,7 @@ function toImpactMetrics(value: unknown): ImpactMetric[] {
         ? String(metric.metricPeriod)
         : undefined,
       baseline: metric.baseline ? String(metric.baseline) : undefined,
-      delta: metric.delta ? String(metric.delta) : undefined,
-      sourceArtifactUrl: metric.source_artifact_url
-        ? String(metric.source_artifact_url)
-        : metric.sourceArtifactUrl
-        ? String(metric.sourceArtifactUrl)
-        : undefined,
-      confidenceLevel:
-        confidenceLevel === "high" || confidenceLevel === "medium" || confidenceLevel === "directional"
-          ? confidenceLevel
-          : undefined
+      delta: metric.delta ? String(metric.delta) : undefined
     });
 
     return accumulator;

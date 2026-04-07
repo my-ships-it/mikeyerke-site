@@ -35,10 +35,10 @@ export default function AboutPage() {
         </article>
 
         <article className="list-item">
-          <h2>Evidence Standard</h2>
+          <h2>What This Site Includes</h2>
           <p>
-            This site separates portfolio outcomes from prior-role outcomes. Published metrics are either linked
-            to artifact notes or sourced from the 2024 pre-Confluent resume snapshot.
+            Public portfolio projects, writing, and pre-Confluent resume outcomes. Confidential employer details
+            are intentionally excluded.
           </p>
         </article>
       </div>

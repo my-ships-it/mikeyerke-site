@@ -89,17 +89,9 @@ collections:
           - { name: label, label: Label, widget: string }
           - { name: value, label: Value, widget: string }
           - { name: detail, label: Detail, widget: string, required: false }
-          - { name: metric_period, label: Metric Period, widget: string }
-          - { name: baseline, label: Baseline, widget: string }
-          - { name: delta, label: Delta, widget: string }
-          - { name: source_artifact_url, label: Source Artifact URL, widget: string }
-          - name: confidence_level
-            label: Confidence Level
-            widget: select
-            options:
-              - { label: High (fully audited), value: high }
-              - { label: Medium (validated sample), value: medium }
-              - { label: Directional (pilot signal), value: directional }
+          - { name: metric_period, label: Metric Period, widget: string, required: false }
+          - { name: baseline, label: Baseline, widget: string, required: false }
+          - { name: delta, label: Delta, widget: string, required: false }
       - { name: repo, label: Repo URL, widget: string, required: false }
       - { name: demo, label: Demo URL, widget: string, required: false }
       - { name: body, label: Body, widget: markdown }

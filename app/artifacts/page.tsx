@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Artifacts",
-  description: "Downloadable operating artifacts from Mike Yerke's GTM systems and RevOps work.",
+  title: "Templates",
+  description: "Downloadable planning and operating templates from Mike Yerke.",
   alternates: {
     canonical: "https://www.mikeyerke.com/artifacts"
   }
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 
 const artifacts = [
   {
-    title: "Forecast Inspection Scorecard Template",
-    description: "Template for confidence review, risk tagging, and coaching escalation during forecast calls.",
+    title: "Forecast Inspection Scorecard",
+    description: "Template for forecast review, risk tagging, and manager follow-up decisions.",
     href: "/artifacts/forecast-inspection-scorecard-template.md"
   },
   {
@@ -29,30 +29,15 @@ const artifacts = [
     title: "GTM Operating Rhythm Checklist",
     description: "Cadence blueprint across weekly, monthly, and quarterly revenue operating reviews.",
     href: "/artifacts/gtm-operating-rhythm-checklist.md"
-  },
-  {
-    title: "Slack to Jira Impact Audit",
-    description: "Measurement log for intake latency, field completeness, and handoff reduction metrics.",
-    href: "/evidence/slack-to-jira-triage-bot/impact-audit.md"
-  },
-  {
-    title: "Forecast Dashboard Impact Audit",
-    description: "Directional benchmark notes for cadence speed and confidence rubric alignment.",
-    href: "/evidence/revops-forecast-quality-dashboard/impact-audit.md"
-  },
-  {
-    title: "Spend Tracker Impact Audit",
-    description: "Real single-user telemetry notes for decision speed and categorization quality.",
-    href: "/evidence/personal-spend-tracker/impact-audit.md"
   }
 ];
 
 export default function ArtifactsPage() {
   return (
     <section>
-      <h1>Artifacts</h1>
+      <h1>Templates</h1>
       <p className="page-intro">
-        Supporting documents for case studies, operating frameworks, and measurement notes.
+        Reusable templates I use for operating reviews and planning discussions.
       </p>
 
       <div className="artifact-grid">

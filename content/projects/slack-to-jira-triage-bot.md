@@ -45,29 +45,14 @@ after:
   - "Jira ticket quality improved with required context and linked source conversation."
 impact:
   - label: "Intake Speed"
-    value: "2.4x faster triage"
-    detail: "Median report-to-ticket routing time dropped during pilot execution."
-    metric_period: "Pilot cohort, 4-week window (portfolio environment)"
-    baseline: "14h median routing time"
-    delta: "-8.2h median (to 5.8h)"
-    source_artifact_url: "/evidence/slack-to-jira-triage-bot/impact-audit.md"
-    confidence_level: "directional"
+    value: "Faster report-to-ticket routing"
+    detail: "Structured capture and deterministic routing reduced triage lag."
   - label: "Data Quality"
-    value: "90% required fields"
-    detail: "Structured capture increased required context before Jira creation."
-    metric_period: "Pilot cohort, first month"
-    baseline: "48% required-field completeness"
-    delta: "+42 pts completeness"
-    source_artifact_url: "/evidence/slack-to-jira-triage-bot/impact-audit.md"
-    confidence_level: "directional"
+    value: "More complete issue payloads"
+    detail: "Required inputs improved context quality before ticket creation."
   - label: "Team Efficiency"
-    value: "37% fewer manual handoffs"
-    detail: "Routing rules removed repeated human reassignment steps."
-    metric_period: "Pilot cohort, first month"
-    baseline: "3.2 manual touchpoints per issue"
-    delta: "-1.2 touchpoints per issue"
-    source_artifact_url: "/evidence/slack-to-jira-triage-bot/impact-audit.md"
-    confidence_level: "directional"
+    value: "Fewer manual reassignments"
+    detail: "Rule-based ownership removed repeated handoff loops."
 ---
 
 Built a lightweight intake bot that turns unstructured Slack reports into standardized Jira issues.
@@ -79,10 +64,6 @@ The problem was not tool availability. The problem was an ownership and data-qua
 - Deterministic routing rules over ad hoc triage
 - Required-field enforcement at submission time
 - Clear escalation ownership for exceptions
-
-## Proof model
-
-Metrics above are sourced from a portfolio pilot dataset and documented in the linked evidence file. They are directional and intended to show operating design discipline, not claim enterprise-wide production rollout.
 
 ## Stack
 
