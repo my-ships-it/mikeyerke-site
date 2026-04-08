@@ -122,19 +122,26 @@ export default function HomePage() {
             <Link href="/blog">All writing</Link>
           </div>
 
-          <div className="journal-grid">
-            {posts.map((post) => (
-              <article className="list-item" key={post.slug}>
-                <p className="meta">
-                  {post.date} | {post.readingMinutes} min read
-                </p>
-                <h3>
-                  <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                </h3>
-                <p>{post.summary}</p>
-              </article>
-            ))}
-          </div>
+          {posts.length > 0 ? (
+            <div className="journal-grid">
+              {posts.map((post) => (
+                <article className="list-item" key={post.slug}>
+                  <p className="meta">
+                    {post.date} | {post.readingMinutes} min read
+                  </p>
+                  <h3>
+                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                  </h3>
+                  <p>{post.summary}</p>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <article className="list-item">
+              <h3>No public posts yet</h3>
+              <p>Draft and generated content was removed. New writing will be added when ready.</p>
+            </article>
+          )}
         </section>
       </Reveal>
 
