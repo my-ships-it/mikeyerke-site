@@ -118,8 +118,16 @@ export async function middleware(request: NextRequest) {
 
   const expectedUsername = process.env.SITE_USERNAME;
   const expectedPassword = process.env.SITE_PASSWORD;
+  const hasUsername = Boolean(expectedUsername);
+  const hasPassword = Boolean(expectedPassword);
 
-  if (!expectedUsername || !expectedPassword) {
+  if (!hasUsername && !hasPassword) {
+    const publicResponse = NextResponse.next();
+    applySecurityHeaders(publicResponse, pathname);
+    return publicResponse;
+  }
+
+  if (!hasUsername || !hasPassword) {
     if (process.env.NODE_ENV === "production") {
       return misconfiguredResponse(pathname);
     }
@@ -128,6 +136,9 @@ export async function middleware(request: NextRequest) {
     applySecurityHeaders(devResponse, pathname);
     return devResponse;
   }
+
+  const authUsername = expectedUsername as string;
+  const authPassword = expectedPassword as string;
 
   const authorization = request.headers.get("authorization");
   if (!authorization || !authorization.startsWith("Basic ")) {
@@ -151,8 +162,8 @@ export async function middleware(request: NextRequest) {
   const providedUsername = decodedCredentials.slice(0, separatorIndex);
   const providedPassword = decodedCredentials.slice(separatorIndex + 1);
 
-  const usernameMatches = await secureCompare(providedUsername, expectedUsername);
-  const passwordMatches = await secureCompare(providedPassword, expectedPassword);
+  const usernameMatches = await secureCompare(providedUsername, authUsername);
+  const passwordMatches = await secureCompare(providedPassword, authPassword);
 
   if (!usernameMatches || !passwordMatches) {
     return unauthorizedResponse(pathname);
